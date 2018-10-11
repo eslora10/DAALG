@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
 import string, random
 import numpy as np
 import matplotlib.pyplot as plt
@@ -106,7 +103,6 @@ if __name__=='__main__':
     print(d)
     print(d_g_2_m_g(d))
 
-
 def cuenta_ramas(m_g):
     """
     """
@@ -136,7 +132,6 @@ sparse_factor = 0.75
 
 print("\ntrue_sparse_factor: %.3f" % sparse_factor,
       "\nexp_sparse_factor:  %.3f" % check_sparse_factor(n_grafos=n_grafos, n_nodes=n_nodes, sparse_factor=sparse_factor))
-
 
 def save_object(obj, f_name="obj.pklz", save_path='.'):
     """"""
@@ -246,7 +241,6 @@ def dijkstra_m(m_g, u):
                 d_prev[z] = v
                 Q.put((d_dist[z],z))
     return d_dist,d_prev
-
 def min_paths(d_prev):
     """
     :d_prev: diccionario con el nodo previo a cada nodo
@@ -256,17 +250,14 @@ def min_paths(d_prev):
     d_path = {}
     for node in d_prev:
         node2 = d_prev[node]
-        d_path[node] = [node2]
+        d_path[node] = [node2, node]
         while node2 in d_prev:
             node2 = d_prev[node2]
             d_path[node].insert(0,node2)
-
-
+    d_path[node2] = [node2]
     return d_path
 
-###ENTREGA
-# Memoria: con la plantilla de Notebook en moodle
-# Borrar todos los comentarios que no sean doc para pydoc
+
 def time_dijkstra_m(n_graphs, n_nodes_ini, n_nodes_fin, step, sparse_factor=.25):
     """ Genera un conjunto de grafos con distintos numeros de nodos para comprobar
     el coste teorico del algoritmo de Dijkstra.
@@ -286,13 +277,16 @@ def time_dijkstra_m(n_graphs, n_nodes_ini, n_nodes_fin, step, sparse_factor=.25)
     n = n_nodes_ini
     while n <= n_nodes_fin:
         m_g = rand_matr_pos_graph(n, sparse_factor)
+        #t = []
         t = 0
         for _ in range(n_graphs):
             for i in range(n):
                 ini = time.time()
                 dijkstra_m(m_g,i)
                 fin = time.time()
+        #        t.append(fin-ini)
                 t+=(fin-ini)
+        #time_l.append(np.mean(t))
         time_l.append(t/(n_graphs*n))
         n+=step
     return time_l
@@ -328,7 +322,7 @@ def time_dijkstra_d(n_graphs, n_nodes_ini, n_nodes_fin, step, sparse_factor=.25)
         time_l.append(t/(n_graphs*n))
         n+=step
     return time_l
-############################################################ checking
+
 d_g = {
 0: {1: 10, 2: 1},
 1: {2: 1},
@@ -338,12 +332,7 @@ d_g = {
 
 u_ini = 3
 
-print("Listas:")
 d_dist, d_prev = dijkstra_d(d_g, u_ini)
-print(d_dist, '\n', min_paths(d_prev))
-
-print("Matrices:")
-d_dist, d_prev = dijkstra_m(d_g_2_m_g(d_g), u_ini)
 print(d_dist, '\n', min_paths(d_prev))
 
 d_g_nx = nx.DiGraph()
@@ -353,17 +342,26 @@ d_g_nx.add_weighted_edges_from(l_e)
 d, p = nx.single_source_dijkstra(d_g_nx, u_ini, weight='weight')
 print(d, '\n', p)
 
+
 n_graphs=20
 n_nodes_ini=10
 n_nodes_fin=100
 step=10
 sparse_f= 0.25
-l_t_d = time_dijkstra_m(n_graphs=n_graphs, n_nodes_ini=n_nodes_ini,
+l_t_d = time_dijkstra_d(n_graphs=n_graphs, n_nodes_ini=n_nodes_ini,
                         n_nodes_fin=n_nodes_fin, step=step, sparse_factor=sparse_f)
-#l_t_d = time_dijkstra_d(n_graphs=n_graphs, n_nodes_ini=n_nodes_ini,
-#                        n_nodes_fin=n_nodes_fin, step=step, sparse_factor=sparse_f)
+
+n_graphs=20
+n_nodes_ini=10
+n_nodes_fin=100
+step=10
+sparse_f= 0.25
+l_t_m = time_dijkstra_m(n_graphs=n_graphs, n_nodes_ini=n_nodes_ini,
+                        n_nodes_fin=n_nodes_fin, step=step, sparse_factor=sparse_f)
+
 
 fit_plot(l_t_d, n2_log_n, size_ini=n_nodes_ini, size_fin=n_nodes_fin, step=step)
+fit_plot(l_t_m, n2_log_n, size_ini=n_nodes_ini, size_fin=n_nodes_fin, step=step)
 
 
 g = nx.DiGraph()
@@ -374,6 +372,7 @@ g.add_weighted_edges_from(l_e)
 for k1 in g.nodes():
     for k2 in g[k1].keys():
         print('(', k1, k2, ')', g[k1][k2]['weight'])
+
 
 def d_g_2_nx_g(d_g):
     """ Transforma un grafo de la representacion de doble diccionario a la
@@ -452,6 +451,7 @@ d_g_nx = d_g_2_nx_g(d_g)
 print_d_g(d_g)
 (d_g_nx)[0][1]
 
+
 n_graphs=20
 n_nodes_ini=10
 n_nodes_fin=100
@@ -459,6 +459,5 @@ step=10
 sparse_f= 0.25
 l_t_nx = time_dijkstra_nx(n_graphs=n_graphs, n_nodes_ini=n_nodes_ini,
                           n_nodes_fin=n_nodes_fin, step=step, sparse_factor=sparse_f)
-
 
 fit_plot(l_t_nx, n2_log_n, size_ini=n_nodes_ini, size_fin=n_nodes_fin, step=step)
