@@ -3,12 +3,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 import time
-
 import queue as qe
-
 from sklearn.linear_model import LinearRegression
-
 import networkx as nx
+from queue import PriorityQueue
 
 def fit_plot(l, func_2_fit, size_ini, size_fin, step):
     l_func_values =[i*func_2_fit(i) for i in range(size_ini, size_fin+1, step)]
@@ -23,15 +21,6 @@ def fit_plot(l, func_2_fit, size_ini, size_fin, step):
 def n2_log_n(n):
     return n**2. * np.log(n)
 
-l = [
-[0, 10, 1, np.inf],
-[np.inf, 0, 1, np.inf],
-[np.inf, np.inf, 0, 1 ],
-[np.inf, 1, np.inf, 0]
-]
-
-m_g = np.array(l)
-
 def print_m_g(m_g):
     print("graph_from_matrix:\n")
     n_v = m_g.shape[0]
@@ -40,22 +29,11 @@ def print_m_g(m_g):
             if v != u and m_g[u, v] != np.inf:
                 print("(", u, v, ")", m_g[u, v])
 
-
-d_g = {
-0: {1: 10, 2: 1},
-1: {2: 1},
-2: {3: 1},
-3: {1: 1}
-}
-
 def print_d_g(d_g):
     print("\ngraph_from_dict:\n")
     for u in d_g.keys():
         for v in d_g[u].keys():
             print("(", u, v, ")", d_g[u][v])
-
-print_m_g(m_g)
-print_d_g(d_g)
 
 def rand_matr_pos_graph(n_nodes, sparse_factor, max_weight=50., decimals=0):
     """
@@ -96,13 +74,6 @@ def d_g_2_m_g(d_g):
     np.fill_diagonal(m_g,0)
     return m_g
 
-if __name__=='__main__':
-    m = rand_matr_pos_graph(3,0.3)
-    print(m)
-    d = m_g_2_d_g(m)
-    print(d)
-    print(d_g_2_m_g(d))
-
 def cuenta_ramas(m_g):
     """
     """
@@ -111,7 +82,6 @@ def cuenta_ramas(m_g):
     # el numero de inf.
     # Restamos los ceros de la diagonal
     return dim**2-len(np.where(m_g == np.inf)[0])-dim
-
 
 def check_sparse_factor(n_grafos, n_nodes, sparse_factor):
     """
@@ -124,15 +94,6 @@ def check_sparse_factor(n_grafos, n_nodes, sparse_factor):
         acum+=sf
     return acum/n_grafos
 
-print(cuenta_ramas(m_g))
-
-n_grafos=50
-n_nodes=20
-sparse_factor = 0.75
-
-print("\ntrue_sparse_factor: %.3f" % sparse_factor,
-      "\nexp_sparse_factor:  %.3f" % check_sparse_factor(n_grafos=n_grafos, n_nodes=n_nodes, sparse_factor=sparse_factor))
-
 def save_object(obj, f_name="obj.pklz", save_path='.'):
     """"""
     # Apertura del fichero comprimido en modo escritura
@@ -140,7 +101,6 @@ def save_object(obj, f_name="obj.pklz", save_path='.'):
     with gzip.open(file_path, mode="wb", compresslevel=9) as file:
         # Volcado del objeto
         pickle.dump(obj, file, protocol=None)
-
 
 def read_object(f_name, save_path='.'):
     """"""
@@ -178,15 +138,6 @@ def TGF_2_d_g(f_name):
             rama = line[:-1].split('\t')
             d_g[int(rama[0])][int(rama[1])] = float(rama[2])
     return d_g
-
-f_name = "gr.tgf"
-d_g_2_TGF(d_g, f_name)
-
-d_g_2 = TGF_2_d_g(f_name)
-print_d_g(d_g)
-print_d_g(d_g_2)
-
-from queue import PriorityQueue
 
 def dijkstra_d(d_g, u):
     """ Implementacion del algoritmo de Dijkstra con listas de adyacencia
@@ -241,6 +192,7 @@ def dijkstra_m(m_g, u):
                 d_prev[z] = v
                 Q.put((d_dist[z],z))
     return d_dist,d_prev
+
 def min_paths(d_prev):
     """
     :d_prev: diccionario con el nodo previo a cada nodo
@@ -277,16 +229,13 @@ def time_dijkstra_m(n_graphs, n_nodes_ini, n_nodes_fin, step, sparse_factor=.25)
     n = n_nodes_ini
     while n <= n_nodes_fin:
         m_g = rand_matr_pos_graph(n, sparse_factor)
-        #t = []
         t = 0
         for _ in range(n_graphs):
             for i in range(n):
                 ini = time.time()
                 dijkstra_m(m_g,i)
                 fin = time.time()
-        #        t.append(fin-ini)
                 t+=(fin-ini)
-        #time_l.append(np.mean(t))
         time_l.append(t/(n_graphs*n))
         n+=step
     return time_l
@@ -323,57 +272,6 @@ def time_dijkstra_d(n_graphs, n_nodes_ini, n_nodes_fin, step, sparse_factor=.25)
         n+=step
     return time_l
 
-d_g = {
-0: {1: 10, 2: 1},
-1: {2: 1},
-2: {3: 1},
-3: {1: 1}
-}
-
-u_ini = 3
-
-d_dist, d_prev = dijkstra_d(d_g, u_ini)
-print(d_dist, '\n', min_paths(d_prev))
-
-d_g_nx = nx.DiGraph()
-l_e = [(0, 1, 10), (0, 2, 1), (1, 2, 1), (2, 3, 1), (3, 1, 1)]
-d_g_nx.add_weighted_edges_from(l_e)
-
-d, p = nx.single_source_dijkstra(d_g_nx, u_ini, weight='weight')
-print(d, '\n', p)
-
-
-n_graphs=20
-n_nodes_ini=10
-n_nodes_fin=100
-step=10
-sparse_f= 0.25
-l_t_d = time_dijkstra_d(n_graphs=n_graphs, n_nodes_ini=n_nodes_ini,
-                        n_nodes_fin=n_nodes_fin, step=step, sparse_factor=sparse_f)
-
-n_graphs=20
-n_nodes_ini=10
-n_nodes_fin=100
-step=10
-sparse_f= 0.25
-l_t_m = time_dijkstra_m(n_graphs=n_graphs, n_nodes_ini=n_nodes_ini,
-                        n_nodes_fin=n_nodes_fin, step=step, sparse_factor=sparse_f)
-
-
-fit_plot(l_t_d, n2_log_n, size_ini=n_nodes_ini, size_fin=n_nodes_fin, step=step)
-fit_plot(l_t_m, n2_log_n, size_ini=n_nodes_ini, size_fin=n_nodes_fin, step=step)
-
-
-g = nx.DiGraph()
-
-l_e = [(0, 1, 10), (0, 2, 1), (1, 2, 1), (2, 3, 1), (3, 1, 1)]
-g.add_weighted_edges_from(l_e)
-
-for k1 in g.nodes():
-    for k2 in g[k1].keys():
-        print('(', k1, k2, ')', g[k1][k2]['weight'])
-
-
 def d_g_2_nx_g(d_g):
     """ Transforma un grafo de la representacion de doble diccionario a la
     la usada por la biblioteca nx.
@@ -388,7 +286,6 @@ def d_g_2_nx_g(d_g):
     d_g_nx = nx.DiGraph()
     d_g_nx.add_weighted_edges_from([(u, v, d_g[u][v]) for u in d_g for v in d_g[u]])
     return d_g_nx
-
 
 def nx_g_2_d_g(nx_g):
     """ Transforma un grafo nx a la representacion de doble diccionario
@@ -438,26 +335,3 @@ def time_dijkstra_nx(n_graphs, n_nodes_ini, n_nodes_fin, step, sparse_factor=.25
         time_l.append(t/(n_graphs*n))
         n+=step
     return time_l
-
-d_g = {
-0: {1: 10, 2: 1},
-1: {2: 1},
-2: {3: 1},
-3: {1: 1}
-}
-
-d_g_nx = d_g_2_nx_g(d_g)
-
-print_d_g(d_g)
-(d_g_nx)[0][1]
-
-
-n_graphs=20
-n_nodes_ini=10
-n_nodes_fin=100
-step=10
-sparse_f= 0.25
-l_t_nx = time_dijkstra_nx(n_graphs=n_graphs, n_nodes_ini=n_nodes_ini,
-                          n_nodes_fin=n_nodes_fin, step=step, sparse_factor=sparse_f)
-
-fit_plot(l_t_nx, n2_log_n, size_ini=n_nodes_ini, size_fin=n_nodes_fin, step=step)
