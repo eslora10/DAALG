@@ -36,8 +36,19 @@ def print_d_g(d_g):
             print("(", u, v, ")", d_g[u][v])
 
 def rand_matr_pos_graph(n_nodes, sparse_factor, max_weight=50., decimals=0):
-    """
-
+    """ Genera una matriz aleatoria de tamaño n_nodes x n_nodes, con un factor
+    de dispersion de sparse_factor. En la que el valor maximo viene especificado
+    por max_weight y en la que los elementos tienen tantos decimales como decimales
+    :n_nodes: numero de nodos del grafos
+    :sparse_factor: factor de dispersion de la matriz
+    :max_weight: valor maximo de los pesos de la matriz
+    :decimals: numero de decimales que queremos que tengan los elementos de la matriz
+    :type n_nodes: int
+    :type sparse_factor: float
+    :type max_weight: float
+    :type decimals: int
+    :return: matriz de adyacencia que representa un grafos
+    :return type: np 2 dimentional array
     """
     m=np.random.random((n_nodes, n_nodes))
     np.place(m,m<1-sparse_factor,np.inf)
@@ -46,11 +57,12 @@ def rand_matr_pos_graph(n_nodes, sparse_factor, max_weight=50., decimals=0):
     return m.round(decimals)
 
 def m_g_2_d_g(m_g):
-    """
-
-    TODO: ¿Hay que eliminar los 0's de lso dict?
-
-    TODO: ¿Mejor forma de hacerlo?¿pythonic way?
+    """ Transformamos la representacion matricial del grafo m_g a una version
+    con diccionarios d_g
+    :m_g: matriz de adyacencia que representa el grafo.
+    :type m_g: np 2 dimentional array
+    :return: grafo en formato de doble diccionario {origen{destino: peso}}.
+    :return type: dictionario cuyos valores son otro diccionario
     """
     dim=m_g.shape
 
@@ -64,7 +76,13 @@ def m_g_2_d_g(m_g):
     return d_g
 
 def d_g_2_m_g(d_g):
-    """
+    """ Transformamos la representacion en diccionarios del grafo m_g a una
+    version con matrices de adyacencia m_g
+    :d_g: doble diccionario con los enlaces del grafo a transformar en matriz
+    de adyacencia.
+    :type d_g: diccionario de diccionarios.
+    :return: grafo representado por una matriz de adyacencia.
+    :return type: np 2 dimentional array.
     """
     l = len(d_g)
     m_g = np.full((l,l), np.inf)
@@ -75,7 +93,12 @@ def d_g_2_m_g(d_g):
     return m_g
 
 def cuenta_ramas(m_g):
-    """
+    """ Funcion que cuenta el numero de ramas de el grafo representado por
+    una matriz de adyacencia.
+    :m_g: matriz de adyacencia del grafo.
+    :type m_g: np 2 dimentional array.
+    :return: numero de ramas del grafos.
+    :return type: int.
     """
     dim = m_g.shape[0]
     # Al tamanno total de la matriz (dim**2) le restamos
@@ -84,7 +107,17 @@ def cuenta_ramas(m_g):
     return dim**2-len(np.where(m_g == np.inf)[0])-dim
 
 def check_sparse_factor(n_grafos, n_nodes, sparse_factor):
-    """
+    """ Comprueba el funcionamiento correcto del parametro sparse_factor.
+    Para ello creamos n_grafos con n_nodes en los que comprobamos el valor
+    de cada sparse_factor y despues promediamos
+    :n_grafos: numero de grafos a realizar.
+    :n_nodes: numero de nodos que tendran los grafos.
+    :sparse_factor: factor de dispersion de los grafos.
+    :type n_grafos: int
+    :type n_nodes:int
+    :type sparse_factor:int
+    :return: sparse factor resultante de hacer el promedio de los grafos
+    :return type: float
     """
     acum=0
     for n in range(n_grafos):
@@ -95,7 +128,15 @@ def check_sparse_factor(n_grafos, n_nodes, sparse_factor):
     return acum/n_grafos
 
 def save_object(obj, f_name="obj.pklz", save_path='.'):
-    """"""
+    """Guarda en binario el objeto pasado por argumento, con nombre f_name en
+    el directorio save_path.
+    :obj: objeto a serializar.
+    :f_name: nombre del fichero serializado.
+    :save_path: nombre de la carpeta donde se guardara el binario
+    :type obj: Objeto
+    :type f_name: str
+    :type save_path: str
+    """
     # Apertura del fichero comprimido en modo escritura
     file_path = os.path.join(save_path, f_name)
     with gzip.open(file_path, mode="wb", compresslevel=9) as file:
@@ -103,7 +144,13 @@ def save_object(obj, f_name="obj.pklz", save_path='.'):
         pickle.dump(obj, file, protocol=None)
 
 def read_object(f_name, save_path='.'):
-    """"""
+    """Carga un objeto serializado en el fichero f_name que se encuentra
+    en la carpeta save_path.
+    :f_name: nombre del fichero a cargar
+    :save_path: nombre de la carpeta donde se encuentra el fichero.
+    :type f_name: str
+    :type save_path: str
+    """
     # Apertura del fichero comprimido en modo lectura
     file_path = os.path.join(save_path, f_name)
     with gzip.open(file_path, mode="rb", compresslevel=9) as file:
@@ -111,7 +158,12 @@ def read_object(f_name, save_path='.'):
         pickle.load(file)
 
 def d_g_2_TGF(d_g, f_name):
-    """
+    """ Recibe la lista de adyacencia de un grafo ponderado en formato doble
+    diccionario. Y genera en el fichero f_name que guarda el grafo en formato TGF
+    :d_g: grafo representado por un doble diccionario.
+    :f_name: fichero destino del grafo, donde se guardara en formato TGF.
+    :type d_g: doble diccionario.
+    :type f_name: str
     """
     with open(f_name,'w') as f:
         for k in d_g:
@@ -123,7 +175,12 @@ def d_g_2_TGF(d_g, f_name):
                 print("{0}\t{1}\t{2}".format(d, dd, d_g[d][dd]), file=f)
 
 def TGF_2_d_g(f_name):
-    """
+    """Funcion que carga fichero f_name, donde se encuentra un grafo representado
+    en formato TFG y devuelve un diccionario de diccionario.
+    :f_name: nombre del fichero donde se encuentra el grafo codificado en TGF
+    :type f_name: str
+    :return: lista de adyacencia
+    :return type: diccionario de diccionarios ;{origen:{destino: peso}}
     """
     d_g = {}
     with open(f_name, 'r') as file:
@@ -146,7 +203,9 @@ def dijkstra_d(d_g, u):
     :type d_g: dictionary, keys are integers, values are dictionarys
     :type u: int
     :return: d_dist lista de distancias minimas encontradas
+    :return type d_dist: diccionario {int : float}
     :return: d_prev camino
+    :return type d_prev: diccionario {int: int}
     """
     # Inicializacion
     s = {node: False for node in d_g}
@@ -171,8 +230,10 @@ def dijkstra_m(m_g, u):
     :u: Nodo inicial
     :type m_g: np 2 dimentional array
     :type u: int
-    :return: d lista de distancias minimas encontradas
-    :return: p camino
+    :return: d_dist lista de distancias minimas encontradas
+    :return type d_dist: diccionario {int : float}
+    :return: d_prev camino
+    :return type d_prev: diccionario {int: int}
     """
     # Inicializacion
     n = m_g.shape[0]
@@ -194,7 +255,7 @@ def dijkstra_m(m_g, u):
     return d_dist,d_prev
 
 def min_paths(d_prev):
-    """
+    """ TODO
     :d_prev: diccionario con el nodo previo a cada nodo
     :d_prev type: diccionario
     :return: diccionario de listas con el camino desde cada nodo inicial a cada nodo
@@ -211,8 +272,8 @@ def min_paths(d_prev):
 
 
 def time_dijkstra_m(n_graphs, n_nodes_ini, n_nodes_fin, step, sparse_factor=.25):
-    """ Genera un conjunto de grafos con distintos numeros de nodos para comprobar
-    el coste teorico del algoritmo de Dijkstra.
+    """ Genera un conjunto de grafos con distintos numeros de nodos para devolver
+    el coste teorico temporal del algoritmo de Dijkstra.
     :n_grafos: numero de grafos a generar
     :n_nodes_ini: numero inicial de nodos del grafo
     :n_nodes_fin: numero final de nodos del grafo
@@ -241,8 +302,8 @@ def time_dijkstra_m(n_graphs, n_nodes_ini, n_nodes_fin, step, sparse_factor=.25)
     return time_l
 
 def time_dijkstra_d(n_graphs, n_nodes_ini, n_nodes_fin, step, sparse_factor=.25):
-    """ Genera un conjunto de grafos con distintos numeros de nodos para comprobar
-    el coste teorico del algoritmo de Dijkstra.
+    """ Genera un conjunto de grafos con distintos numeros de nodos para devolver
+    el coste teorico temporal del algoritmo de Dijkstra.
     :n_grafos: numero de grafos a generar
     :n_nodes_ini: numero inicial de nodos del grafo
     :n_nodes_fin: numero final de nodos del grafo
