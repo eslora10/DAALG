@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0035)http://localhost:1234/grafos02.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Pydoc: module grafos02</title>
+
+<link rel="stylesheet" type="text/css" href="./grafos02_files/_pydoc.css"></head><body bgcolor="#f0f0f8">
+            <div style="float:left">
+                Python 3.5.2 [default, GCC 5.4.0 20160609]<br>Linux-4.4.0-127-generic-x86_64-with-glibc2.9
+            </div>
+            <div style="float:right">
+                <div style="text-align:center">
+                  <a href="http://localhost:1234/index.html">Module Index</a>
+                  : <a href="http://localhost:1234/topics.html">Topics</a>
+                  : <a href="http://localhost:1234/keywords.html">Keywords</a>
+                </div>
+                <div>
+                    <form action="http://localhost:1234/get" style="display:inline;">
+                      <input type="text" name="key" size="15">
+                      <input type="submit" value="Get">
+                    </form>&nbsp;
+                    <form action="http://localhost:1234/search" style="display:inline;">
+                      <input type="text" name="key" size="15">
+                      <input type="submit" value="Search">
+                    </form>
+                </div>
+            </div>
+            <div style="clear:both;padding-top:.5em;">
+<table width="100%" cellspacing="0" cellpadding="2" border="0" summary="heading">
+<tbody><tr bgcolor="#7799ee">
+<td valign="bottom">&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>grafos02</strong></big></big></font></td><td align="right" valign="bottom"><font color="#ffffff" face="helvetica, arial"><a href="http://localhost:1234/">index</a><br><a href="http://localhost:1234/getfile?key=/home/esther/Escritorio/UAM/quinto/DAALG/grafos02.py">/home/esther/Escritorio/UAM/quinto/DAALG/grafos02.py</a></font></td></tr></tbody></table>
+    <p><tt>#&nbsp;-*-&nbsp;coding:&nbsp;utf-8&nbsp;-*-</tt></p>
+<p>
+<table width="100%" cellspacing="0" cellpadding="2" border="0" summary="section">
+<tbody><tr bgcolor="#aa55cc">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tbody><tr><td width="25%" valign="top"><a href="http://localhost:1234/gzip.html">gzip</a><br>
+<a href="http://localhost:1234/numpy.html">numpy</a><br>
+<a href="http://localhost:1234/networkx.html">networkx</a><br>
+</td><td width="25%" valign="top"><a href="http://localhost:1234/os.html">os</a><br>
+<a href="http://localhost:1234/pickle.html">pickle</a><br>
+<a href="http://localhost:1234/matplotlib.pyplot.html">matplotlib.pyplot</a><br>
+</td><td width="25%" valign="top"><a href="http://localhost:1234/queue.html">queue</a><br>
+<a href="http://localhost:1234/random.html">random</a><br>
+<a href="http://localhost:1234/string.html">string</a><br>
+</td><td width="25%" valign="top"><a href="http://localhost:1234/sys.html">sys</a><br>
+<a href="http://localhost:1234/time.html">time</a><br>
+</td></tr></tbody></table></td></tr></tbody></table></p><p>
+<table width="100%" cellspacing="0" cellpadding="2" border="0" summary="section">
+<tbody><tr bgcolor="#eeaa77">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-TGF_2_d_g"><strong>TGF_2_d_g</strong></a>(f_name)</dt><dd><tt>Funcion&nbsp;que&nbsp;carga&nbsp;fichero&nbsp;f_name,&nbsp;donde&nbsp;se&nbsp;encuentra&nbsp;un&nbsp;grafo&nbsp;representado<br>
+en&nbsp;formato&nbsp;TFG&nbsp;y&nbsp;devuelve&nbsp;un&nbsp;diccionario&nbsp;de&nbsp;diccionario.<br>
+:f_name:&nbsp;nombre&nbsp;del&nbsp;fichero&nbsp;donde&nbsp;se&nbsp;encuentra&nbsp;el&nbsp;grafo&nbsp;codificado&nbsp;en&nbsp;TGF<br>
+:type&nbsp;f_name:&nbsp;str<br>
+:return:&nbsp;lista&nbsp;de&nbsp;adyacencia<br>
+:return&nbsp;type:&nbsp;diccionario&nbsp;de&nbsp;diccionarios&nbsp;;{origen:{destino:&nbsp;peso}}</tt></dd></dl>
+ <dl><dt><a name="-check_sparse_factor"><strong>check_sparse_factor</strong></a>(n_grafos, n_nodes, sparse_factor)</dt><dd><tt>Comprueba&nbsp;el&nbsp;funcionamiento&nbsp;correcto&nbsp;del&nbsp;parametro&nbsp;sparse_factor.<br>
+Para&nbsp;ello&nbsp;creamos&nbsp;n_grafos&nbsp;con&nbsp;n_nodes&nbsp;en&nbsp;los&nbsp;que&nbsp;comprobamos&nbsp;el&nbsp;valor<br>
+de&nbsp;cada&nbsp;sparse_factor&nbsp;y&nbsp;despues&nbsp;promediamos<br>
+:n_grafos:&nbsp;numero&nbsp;de&nbsp;grafos&nbsp;a&nbsp;realizar.<br>
+:n_nodes:&nbsp;numero&nbsp;de&nbsp;nodos&nbsp;que&nbsp;tendran&nbsp;los&nbsp;grafos.<br>
+:sparse_factor:&nbsp;factor&nbsp;de&nbsp;dispersion&nbsp;de&nbsp;los&nbsp;grafos.<br>
+:type&nbsp;n_grafos:&nbsp;int<br>
+:type&nbsp;n_nodes:int<br>
+:type&nbsp;sparse_factor:int<br>
+:return:&nbsp;sparse&nbsp;factor&nbsp;resultante&nbsp;de&nbsp;hacer&nbsp;el&nbsp;promedio&nbsp;de&nbsp;los&nbsp;grafos<br>
+:return&nbsp;type:&nbsp;float</tt></dd></dl>
+ <dl><dt><a name="-cuenta_ramas"><strong>cuenta_ramas</strong></a>(m_g)</dt><dd><tt>Funcion&nbsp;que&nbsp;cuenta&nbsp;el&nbsp;numero&nbsp;de&nbsp;ramas&nbsp;de&nbsp;el&nbsp;grafo&nbsp;representado&nbsp;por<br>
+una&nbsp;matriz&nbsp;de&nbsp;adyacencia.<br>
+:m_g:&nbsp;matriz&nbsp;de&nbsp;adyacencia&nbsp;del&nbsp;grafo.<br>
+:type&nbsp;m_g:&nbsp;np&nbsp;2&nbsp;dimentional&nbsp;array.<br>
+:return:&nbsp;numero&nbsp;de&nbsp;ramas&nbsp;del&nbsp;grafos.<br>
+:return&nbsp;type:&nbsp;int.</tt></dd></dl>
+ <dl><dt><a name="-d_g_2_TGF"><strong>d_g_2_TGF</strong></a>(d_g, f_name)</dt><dd><tt>Recibe&nbsp;la&nbsp;lista&nbsp;de&nbsp;adyacencia&nbsp;de&nbsp;un&nbsp;grafo&nbsp;ponderado&nbsp;en&nbsp;formato&nbsp;doble<br>
+diccionario.&nbsp;Y&nbsp;genera&nbsp;en&nbsp;el&nbsp;fichero&nbsp;f_name&nbsp;que&nbsp;guarda&nbsp;el&nbsp;grafo&nbsp;en&nbsp;formato&nbsp;TGF<br>
+:d_g:&nbsp;grafo&nbsp;representado&nbsp;por&nbsp;un&nbsp;doble&nbsp;diccionario.<br>
+:f_name:&nbsp;fichero&nbsp;destino&nbsp;del&nbsp;grafo,&nbsp;donde&nbsp;se&nbsp;guardara&nbsp;en&nbsp;formato&nbsp;TGF.<br>
+:type&nbsp;d_g:&nbsp;doble&nbsp;diccionario.<br>
+:type&nbsp;f_name:&nbsp;str</tt></dd></dl>
+ <dl><dt><a name="-d_g_2_m_g"><strong>d_g_2_m_g</strong></a>(d_g)</dt><dd><tt>Transformamos&nbsp;la&nbsp;representacion&nbsp;en&nbsp;diccionarios&nbsp;del&nbsp;grafo&nbsp;m_g&nbsp;a&nbsp;una<br>
+version&nbsp;con&nbsp;matrices&nbsp;de&nbsp;adyacencia&nbsp;m_g<br>
+:d_g:&nbsp;doble&nbsp;diccionario&nbsp;con&nbsp;los&nbsp;enlaces&nbsp;del&nbsp;grafo&nbsp;a&nbsp;transformar&nbsp;en&nbsp;matriz<br>
+de&nbsp;adyacencia.<br>
+:type&nbsp;d_g:&nbsp;diccionario&nbsp;de&nbsp;diccionarios.<br>
+:return:&nbsp;grafo&nbsp;representado&nbsp;por&nbsp;una&nbsp;matriz&nbsp;de&nbsp;adyacencia.<br>
+:return&nbsp;type:&nbsp;np&nbsp;2&nbsp;dimentional&nbsp;array.</tt></dd></dl>
+ <dl><dt><a name="-d_g_2_nx_g"><strong>d_g_2_nx_g</strong></a>(d_g)</dt><dd><tt>Transforma&nbsp;un&nbsp;grafo&nbsp;de&nbsp;la&nbsp;representacion&nbsp;de&nbsp;doble&nbsp;diccionario&nbsp;a&nbsp;la<br>
+la&nbsp;usada&nbsp;por&nbsp;la&nbsp;biblioteca&nbsp;nx.<br>
+:d_g:&nbsp;diccionario&nbsp;a&nbsp;transformar&nbsp;en&nbsp;el&nbsp;formato&nbsp;nx;&nbsp;tripe&nbsp;diccionario<br>
+:d_g&nbsp;type:&nbsp;diccionario&nbsp;de&nbsp;diccionario,&nbsp;las&nbsp;claves&nbsp;del&nbsp;primer&nbsp;diccionario&nbsp;son<br>
+los&nbsp;nodos&nbsp;origen&nbsp;y&nbsp;las&nbsp;del&nbsp;segundo&nbsp;los&nbsp;nodos&nbsp;destino.&nbsp;Los&nbsp;valores&nbsp;del<br>
+diccionario&nbsp;mas&nbsp;interno&nbsp;son&nbsp;el&nbsp;peso&nbsp;de&nbsp;cada&nbsp;rama.&nbsp;Los&nbsp;nodos&nbsp;son&nbsp;valores&nbsp;enteros<br>
+los&nbsp;pesos&nbsp;en&nbsp;float<br>
+:return:&nbsp;grafo&nbsp;nx&nbsp;resultante<br>
+:return&nbsp;type:&nbsp;NetworkX&nbsp;graph</tt></dd></dl>
+ <dl><dt><a name="-dijkstra_d"><strong>dijkstra_d</strong></a>(d_g, u)</dt><dd><tt>Implementacion&nbsp;del&nbsp;algoritmo&nbsp;de&nbsp;Dijkstra&nbsp;con&nbsp;listas&nbsp;de&nbsp;adyacencia<br>
+:d_g:&nbsp;Lista&nbsp;de&nbsp;adyacencia&nbsp;que&nbsp;representa&nbsp;el&nbsp;grafo<br>
+:u:&nbsp;Nodo&nbsp;inicial<br>
+:type&nbsp;d_g:&nbsp;dictionary,&nbsp;keys&nbsp;are&nbsp;integers,&nbsp;values&nbsp;are&nbsp;dictionarys<br>
+:type&nbsp;u:&nbsp;int<br>
+:return:&nbsp;d_dist&nbsp;lista&nbsp;de&nbsp;distancias&nbsp;minimas&nbsp;encontradas<br>
+:return&nbsp;type&nbsp;d_dist:&nbsp;diccionario&nbsp;{int&nbsp;:&nbsp;float}<br>
+:return:&nbsp;d_prev&nbsp;camino<br>
+:return&nbsp;type&nbsp;d_prev:&nbsp;diccionario&nbsp;{int:&nbsp;int}</tt></dd></dl>
+ <dl><dt><a name="-dijkstra_m"><strong>dijkstra_m</strong></a>(m_g, u)</dt><dd><tt>Implementacion&nbsp;del&nbsp;algoritmo&nbsp;de&nbsp;Dijkstra&nbsp;con&nbsp;matrices<br>
+:u:&nbsp;Nodo&nbsp;inicial<br>
+:type&nbsp;m_g:&nbsp;np&nbsp;2&nbsp;dimentional&nbsp;array<br>
+:type&nbsp;u:&nbsp;int<br>
+:return:&nbsp;d_dist&nbsp;lista&nbsp;de&nbsp;distancias&nbsp;minimas&nbsp;encontradas<br>
+:return&nbsp;type&nbsp;d_dist:&nbsp;diccionario&nbsp;{int&nbsp;:&nbsp;float}<br>
+:return:&nbsp;d_prev&nbsp;camino<br>
+:return&nbsp;type&nbsp;d_prev:&nbsp;diccionario&nbsp;{int:&nbsp;int}</tt></dd></dl>
+ <dl><dt><a name="-fit_plot"><strong>fit_plot</strong></a>(l, func_2_fit, size_ini, size_fin, step)</dt><dd><tt>Funcion&nbsp;que&nbsp;dibuja&nbsp;la&nbsp;lista&nbsp;de&nbsp;puntos&nbsp;y&nbsp;la&nbsp;compara&nbsp;con&nbsp;la&nbsp;funcion<br>
+func_2_fit,&nbsp;para&nbsp;la&nbsp;cual&nbsp;se&nbsp;obtienen&nbsp;valores&nbsp;desde&nbsp;size_ini&nbsp;hasta<br>
+size_fin&nbsp;con&nbsp;incrementos&nbsp;de&nbsp;step<br>
+:l:&nbsp;lista&nbsp;de&nbsp;puntos&nbsp;a&nbsp;comparar&nbsp;con&nbsp;func_2_fit<br>
+:func_2_fit:&nbsp;funcion&nbsp;para&nbsp;la&nbsp;que&nbsp;conseguiremos&nbsp;valores<br>
+:size_ini:&nbsp;primero&nbsp;de&nbsp;los&nbsp;puntos&nbsp;a&nbsp;evaluar<br>
+:size_fin:&nbsp;ultimo&nbsp;de&nbsp;los&nbsp;puntos&nbsp;a&nbsp;evaluar<br>
+:step:&nbsp;salto&nbsp;entre&nbsp;valores<br>
+:type&nbsp;l:&nbsp;lista<br>
+:type&nbsp;func_2_fit:&nbsp;funcion<br>
+:type&nbsp;size_ini:&nbsp;float<br>
+:type&nbsp;size_fin:&nbsp;float<br>
+:type&nbsp;step:&nbsp;float</tt></dd></dl>
+ <dl><dt><a name="-m_g_2_d_g"><strong>m_g_2_d_g</strong></a>(m_g)</dt><dd><tt>Transformamos&nbsp;la&nbsp;representacion&nbsp;matricial&nbsp;del&nbsp;grafo&nbsp;m_g&nbsp;a&nbsp;una&nbsp;version<br>
+con&nbsp;diccionarios&nbsp;d_g<br>
+:m_g:&nbsp;matriz&nbsp;de&nbsp;adyacencia&nbsp;que&nbsp;representa&nbsp;el&nbsp;grafo.<br>
+:type&nbsp;m_g:&nbsp;np&nbsp;2&nbsp;dimentional&nbsp;array<br>
+:return:&nbsp;grafo&nbsp;en&nbsp;formato&nbsp;de&nbsp;doble&nbsp;diccionario&nbsp;{origen{destino:&nbsp;peso}}.<br>
+:return&nbsp;type:&nbsp;dictionario&nbsp;cuyos&nbsp;valores&nbsp;son&nbsp;otro&nbsp;diccionario</tt></dd></dl>
+ <dl><dt><a name="-min_paths"><strong>min_paths</strong></a>(d_prev)</dt><dd><tt>TODO<br>
+:d_prev:&nbsp;diccionario&nbsp;con&nbsp;el&nbsp;nodo&nbsp;previo&nbsp;a&nbsp;cada&nbsp;nodo<br>
+:d_prev&nbsp;type:&nbsp;diccionario<br>
+:return:&nbsp;diccionario&nbsp;de&nbsp;listas&nbsp;con&nbsp;el&nbsp;camino&nbsp;desde&nbsp;cada&nbsp;nodo&nbsp;inicial&nbsp;a&nbsp;cada&nbsp;nodo</tt></dd></dl>
+ <dl><dt><a name="-n2_log_n"><strong>n2_log_n</strong></a>(n)</dt><dd><tt>Funcion&nbsp;2*n&nbsp;log(n)<br>
+:n:&nbsp;parametro&nbsp;de&nbsp;la&nbsp;funcion<br>
+:type&nbsp;n:&nbsp;int<br>
+:return:&nbsp;resultado&nbsp;de&nbsp;la&nbsp;operacion<br>
+:return&nbsp;type:&nbsp;float</tt></dd></dl>
+ <dl><dt><a name="-nx_g_2_d_g"><strong>nx_g_2_d_g</strong></a>(nx_g)</dt><dd><tt>Transforma&nbsp;un&nbsp;grafo&nbsp;nx&nbsp;a&nbsp;la&nbsp;representacion&nbsp;de&nbsp;doble&nbsp;diccionario<br>
+:nx_g:&nbsp;grafo&nbsp;de&nbsp;nx<br>
+:nx_g&nbsp;type:&nbsp;NetworkX&nbsp;graph<br>
+:return:&nbsp;grafo&nbsp;en&nbsp;nuestra&nbsp;implementacion&nbsp;de&nbsp;doble&nbsp;diccionario<br>
+:return&nbsp;type:&nbsp;dict&nbsp;con&nbsp;claves&nbsp;int&nbsp;valor&nbsp;dict&nbsp;con&nbsp;claves&nbsp;int&nbsp;valor&nbsp;float</tt></dd></dl>
+ <dl><dt><a name="-print_d_g"><strong>print_d_g</strong></a>(d_g)</dt><dd><tt>Funcion&nbsp;que&nbsp;imprime&nbsp;una&nbsp;representacion&nbsp;a&nbsp;partir&nbsp;del&nbsp;diccionario&nbsp;de&nbsp;adyacencia<br>
+:d_g:&nbsp;grafo&nbsp;representado&nbsp;con&nbsp;un&nbsp;doble&nbsp;diccionario<br>
+:type&nbsp;d_g:&nbsp;&nbsp;doble&nbsp;diccionario&nbsp;{origen:&nbsp;{destino:&nbsp;valor}}</tt></dd></dl>
+ <dl><dt><a name="-print_m_g"><strong>print_m_g</strong></a>(m_g)</dt><dd><tt>Funcion&nbsp;que&nbsp;imprime&nbsp;una&nbsp;representacion&nbsp;a&nbsp;partir&nbsp;de&nbsp;la&nbsp;matriz&nbsp;de&nbsp;adyacenciaself.<br>
+:m_g:&nbsp;matriz&nbsp;de&nbsp;adyacencia<br>
+:type&nbsp;m_g:&nbsp;np&nbsp;2&nbsp;dimentional&nbsp;array</tt></dd></dl>
+ <dl><dt><a name="-rand_matr_pos_graph"><strong>rand_matr_pos_graph</strong></a>(n_nodes, sparse_factor, max_weight=50.0, decimals=0)</dt><dd><tt>Genera&nbsp;una&nbsp;matriz&nbsp;aleatoria&nbsp;de&nbsp;tamaño&nbsp;n_nodes&nbsp;x&nbsp;n_nodes,&nbsp;con&nbsp;un&nbsp;factor<br>
+de&nbsp;dispersion&nbsp;de&nbsp;sparse_factor.&nbsp;En&nbsp;la&nbsp;que&nbsp;el&nbsp;valor&nbsp;maximo&nbsp;viene&nbsp;especificado<br>
+por&nbsp;max_weight&nbsp;y&nbsp;en&nbsp;la&nbsp;que&nbsp;los&nbsp;elementos&nbsp;tienen&nbsp;tantos&nbsp;decimales&nbsp;como&nbsp;decimales<br>
+:n_nodes:&nbsp;numero&nbsp;de&nbsp;nodos&nbsp;del&nbsp;grafos<br>
+:sparse_factor:&nbsp;factor&nbsp;de&nbsp;dispersion&nbsp;de&nbsp;la&nbsp;matriz<br>
+:max_weight:&nbsp;valor&nbsp;maximo&nbsp;de&nbsp;los&nbsp;pesos&nbsp;de&nbsp;la&nbsp;matriz<br>
+:decimals:&nbsp;numero&nbsp;de&nbsp;decimales&nbsp;que&nbsp;queremos&nbsp;que&nbsp;tengan&nbsp;los&nbsp;elementos&nbsp;de&nbsp;la&nbsp;matriz<br>
+:type&nbsp;n_nodes:&nbsp;int<br>
+:type&nbsp;sparse_factor:&nbsp;float<br>
+:type&nbsp;max_weight:&nbsp;float<br>
+:type&nbsp;decimals:&nbsp;int<br>
+:return:&nbsp;matriz&nbsp;de&nbsp;adyacencia&nbsp;que&nbsp;representa&nbsp;un&nbsp;grafos<br>
+:return&nbsp;type:&nbsp;np&nbsp;2&nbsp;dimentional&nbsp;array</tt></dd></dl>
+ <dl><dt><a name="-read_object"><strong>read_object</strong></a>(f_name, save_path='.')</dt><dd><tt>Carga&nbsp;un&nbsp;objeto&nbsp;serializado&nbsp;en&nbsp;el&nbsp;fichero&nbsp;f_name&nbsp;que&nbsp;se&nbsp;encuentra<br>
+en&nbsp;la&nbsp;carpeta&nbsp;save_path.<br>
+:f_name:&nbsp;nombre&nbsp;del&nbsp;fichero&nbsp;a&nbsp;cargar<br>
+:save_path:&nbsp;nombre&nbsp;de&nbsp;la&nbsp;carpeta&nbsp;donde&nbsp;se&nbsp;encuentra&nbsp;el&nbsp;fichero.<br>
+:type&nbsp;f_name:&nbsp;str<br>
+:type&nbsp;save_path:&nbsp;str<br>
+:return:&nbsp;el&nbsp;fichero&nbsp;leido<br>
+:return&nbsp;type:&nbsp;tipo&nbsp;del&nbsp;fichero&nbsp;leido</tt></dd></dl>
+ <dl><dt><a name="-save_object"><strong>save_object</strong></a>(obj, f_name='obj.pklz', save_path='.')</dt><dd><tt>Guarda&nbsp;en&nbsp;binario&nbsp;el&nbsp;objeto&nbsp;pasado&nbsp;por&nbsp;argumento,&nbsp;con&nbsp;nombre&nbsp;f_name&nbsp;en<br>
+el&nbsp;directorio&nbsp;save_path.<br>
+:obj:&nbsp;objeto&nbsp;a&nbsp;serializar.<br>
+:f_name:&nbsp;nombre&nbsp;del&nbsp;fichero&nbsp;serializado.<br>
+:save_path:&nbsp;nombre&nbsp;de&nbsp;la&nbsp;carpeta&nbsp;donde&nbsp;se&nbsp;guardara&nbsp;el&nbsp;binario<br>
+:type&nbsp;obj:&nbsp;Objeto<br>
+:type&nbsp;f_name:&nbsp;str<br>
+:type&nbsp;save_path:&nbsp;str</tt></dd></dl>
+ <dl><dt><a name="-time_dijkstra_d"><strong>time_dijkstra_d</strong></a>(n_graphs, n_nodes_ini, n_nodes_fin, step, sparse_factor=0.25)</dt><dd><tt>Genera&nbsp;un&nbsp;conjunto&nbsp;de&nbsp;grafos&nbsp;con&nbsp;distintos&nbsp;numeros&nbsp;de&nbsp;nodos&nbsp;para&nbsp;devolver<br>
+el&nbsp;coste&nbsp;teorico&nbsp;temporal&nbsp;del&nbsp;algoritmo&nbsp;de&nbsp;Dijkstra.<br>
+:n_grafos:&nbsp;numero&nbsp;de&nbsp;grafos&nbsp;a&nbsp;generar<br>
+:n_nodes_ini:&nbsp;numero&nbsp;inicial&nbsp;de&nbsp;nodos&nbsp;del&nbsp;grafo<br>
+:n_nodes_fin:&nbsp;numero&nbsp;final&nbsp;de&nbsp;nodos&nbsp;del&nbsp;grafo<br>
+:step:&nbsp;paso&nbsp;en&nbsp;cada&nbsp;iteracion&nbsp;de&nbsp;numero&nbsp;de&nbsp;nodos<br>
+:sparse_factor:&nbsp;factor&nbsp;de&nbsp;dispersion&nbsp;de&nbsp;la&nbsp;matriz<br>
+:type&nbsp;n_grafos:&nbsp;int<br>
+:type&nbsp;n_nodes_ini:&nbsp;int<br>
+:type&nbsp;n_nodes_fin:&nbsp;int<br>
+:type&nbsp;step:&nbsp;int<br>
+:type&nbsp;sparse_factor:&nbsp;float<br>
+:return:&nbsp;time_l&nbsp;lista&nbsp;de&nbsp;los&nbsp;tiempos&nbsp;en&nbsp;cada&nbsp;paso</tt></dd></dl>
+ <dl><dt><a name="-time_dijkstra_m"><strong>time_dijkstra_m</strong></a>(n_graphs, n_nodes_ini, n_nodes_fin, step, sparse_factor=0.25)</dt><dd><tt>Genera&nbsp;un&nbsp;conjunto&nbsp;de&nbsp;grafos&nbsp;con&nbsp;distintos&nbsp;numeros&nbsp;de&nbsp;nodos&nbsp;para&nbsp;devolver<br>
+el&nbsp;coste&nbsp;teorico&nbsp;temporal&nbsp;del&nbsp;algoritmo&nbsp;de&nbsp;Dijkstra.<br>
+:n_grafos:&nbsp;numero&nbsp;de&nbsp;grafos&nbsp;a&nbsp;generar<br>
+:n_nodes_ini:&nbsp;numero&nbsp;inicial&nbsp;de&nbsp;nodos&nbsp;del&nbsp;grafo<br>
+:n_nodes_fin:&nbsp;numero&nbsp;final&nbsp;de&nbsp;nodos&nbsp;del&nbsp;grafo<br>
+:step:&nbsp;paso&nbsp;en&nbsp;cada&nbsp;iteracion&nbsp;de&nbsp;numero&nbsp;de&nbsp;nodos<br>
+:sparse_factor:&nbsp;factor&nbsp;de&nbsp;dispersion&nbsp;de&nbsp;la&nbsp;matriz<br>
+:type&nbsp;n_grafos:&nbsp;int<br>
+:type&nbsp;n_nodes_ini:&nbsp;int<br>
+:type&nbsp;n_nodes_fin:&nbsp;int<br>
+:type&nbsp;step:&nbsp;int<br>
+:type&nbsp;sparse_factor:&nbsp;float<br>
+:return:&nbsp;time_l&nbsp;lista&nbsp;con&nbsp;los&nbsp;tiempos&nbsp;en&nbsp;cada&nbsp;paso</tt></dd></dl>
+ <dl><dt><a name="-time_dijkstra_nx"><strong>time_dijkstra_nx</strong></a>(n_graphs, n_nodes_ini, n_nodes_fin, step, sparse_factor=0.25)</dt><dd><tt>Genera&nbsp;un&nbsp;conjunto&nbsp;de&nbsp;grafos&nbsp;con&nbsp;distintos&nbsp;numeros&nbsp;de&nbsp;nodos&nbsp;para&nbsp;comprobar<br>
+el&nbsp;coste&nbsp;teorico&nbsp;del&nbsp;algoritmo&nbsp;de&nbsp;Dijkstra&nbsp;implementado&nbsp;en&nbsp;la&nbsp;biblioteca&nbsp;Networkx.<br>
+:n_graphs:&nbsp;numero&nbsp;de&nbsp;grafos&nbsp;a&nbsp;generar<br>
+:n_nodes_ini:&nbsp;numero&nbsp;inicial&nbsp;de&nbsp;nodos&nbsp;del&nbsp;grafo<br>
+:n_nodes_fin:&nbsp;numero&nbsp;final&nbsp;de&nbsp;nodos&nbsp;del&nbsp;grafo<br>
+:step:&nbsp;paso&nbsp;en&nbsp;cada&nbsp;iteracion&nbsp;de&nbsp;numero&nbsp;de&nbsp;nodos<br>
+:sparse_factor:&nbsp;factor&nbsp;de&nbsp;dispersion&nbsp;del&nbsp;grafo<br>
+:type&nbsp;n_grafos:&nbsp;int<br>
+:type&nbsp;n_nodes_ini:&nbsp;int<br>
+:type&nbsp;n_nodes_fin:&nbsp;int<br>
+:type&nbsp;step:&nbsp;int<br>
+:type&nbsp;sparse_factor:&nbsp;float<br>
+:return:&nbsp;time_l&nbsp;lista&nbsp;con&nbsp;los&nbsp;tiempos&nbsp;en&nbsp;cada&nbsp;paso<br>
+:return&nbsp;type:&nbsp;lista&nbsp;de&nbsp;float</tt></dd></dl>
+</td></tr></tbody></table></p></div>
+</body></html>

@@ -1,7 +1,11 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import string, random
 import numpy as np
 import matplotlib.pyplot as plt
-import sys
+import sys, os
+import gzip, pickle
 import time
 import queue as qe
 from sklearn.linear_model import LinearRegression
@@ -9,6 +13,20 @@ import networkx as nx
 from queue import PriorityQueue
 
 def fit_plot(l, func_2_fit, size_ini, size_fin, step):
+    ''' Funcion que dibuja la lista de puntos y la compara con la funcion
+    func_2_fit, para la cual se obtienen valores desde size_ini hasta
+    size_fin con incrementos de step
+    :l: lista de puntos a comparar con func_2_fit
+    :func_2_fit: funcion para la que conseguiremos valores
+    :size_ini: primero de los puntos a evaluar
+    :size_fin: ultimo de los puntos a evaluar
+    :step: salto entre valores
+    :type l: lista
+    :type func_2_fit: funcion
+    :type size_ini: float
+    :type size_fin: float
+    :type step: float
+    '''
     l_func_values =[i*func_2_fit(i) for i in range(size_ini, size_fin+1, step)]
 
     lr_m = LinearRegression()
@@ -19,9 +37,19 @@ def fit_plot(l, func_2_fit, size_ini, size_fin, step):
     plt.plot(l, '*', y_pred, '-')
 
 def n2_log_n(n):
+    ''' Funcion 2*n log(n)
+    :n: parametro de la funcion
+    :type n: int
+    :return: resultado de la operacion
+    :return type: float
+    '''
     return n**2. * np.log(n)
 
 def print_m_g(m_g):
+    ''' Funcion que imprime una representacion a partir de la matriz de adyacenciaself.
+    :m_g: matriz de adyacencia
+    :type m_g: np 2 dimentional array
+    '''
     print("graph_from_matrix:\n")
     n_v = m_g.shape[0]
     for u in range(n_v):
@@ -30,6 +58,10 @@ def print_m_g(m_g):
                 print("(", u, v, ")", m_g[u, v])
 
 def print_d_g(d_g):
+    ''' Funcion que imprime una representacion a partir del diccionario de adyacencia
+    :d_g: grafo representado con un doble diccionario
+    :type d_g:  doble diccionario {origen: {destino: valor}}
+    '''
     print("\ngraph_from_dict:\n")
     for u in d_g.keys():
         for v in d_g[u].keys():
@@ -150,12 +182,14 @@ def read_object(f_name, save_path='.'):
     :save_path: nombre de la carpeta donde se encuentra el fichero.
     :type f_name: str
     :type save_path: str
+    :return: el fichero leido
+    :return type: tipo del fichero leido
     """
     # Apertura del fichero comprimido en modo lectura
     file_path = os.path.join(save_path, f_name)
     with gzip.open(file_path, mode="rb", compresslevel=9) as file:
         # Lectura del objeto
-        pickle.load(file)
+        return pickle.load(file)
 
 def d_g_2_TGF(d_g, f_name):
     """ Recibe la lista de adyacencia de un grafo ponderado en formato doble
@@ -289,9 +323,9 @@ def time_dijkstra_m(n_graphs, n_nodes_ini, n_nodes_fin, step, sparse_factor=.25)
     time_l = []
     n = n_nodes_ini
     while n <= n_nodes_fin:
-        m_g = rand_matr_pos_graph(n, sparse_factor)
         t = 0
         for _ in range(n_graphs):
+            m_g = rand_matr_pos_graph(n, sparse_factor)
             for i in range(n):
                 ini = time.time()
                 dijkstra_m(m_g,i)
@@ -320,10 +354,10 @@ def time_dijkstra_d(n_graphs, n_nodes_ini, n_nodes_fin, step, sparse_factor=.25)
     time_l = []
     n = n_nodes_ini
     while n <= n_nodes_fin:
-        m_g = rand_matr_pos_graph(n, sparse_factor)
-        d_g= m_g_2_d_g(m_g)
         t = 0
         for _ in range(n_graphs):
+            m_g = rand_matr_pos_graph(n, sparse_factor)
+            d_g= m_g_2_d_g(m_g)
             for i in range(n):
                 ini = time.time()
                 dijkstra_d(d_g,i)
@@ -345,6 +379,7 @@ def d_g_2_nx_g(d_g):
     :return type: NetworkX graph
     """
     d_g_nx = nx.DiGraph()
+    d_g_nx.add_nodes_from(d_g.keys())
     d_g_nx.add_weighted_edges_from([(u, v, d_g[u][v]) for u in d_g for v in d_g[u]])
     return d_g_nx
 
@@ -383,11 +418,11 @@ def time_dijkstra_nx(n_graphs, n_nodes_ini, n_nodes_fin, step, sparse_factor=.25
     time_l = []
     n = n_nodes_ini
     while n <= n_nodes_fin:
-        m_g = rand_matr_pos_graph(n, sparse_factor)
-        d_g= m_g_2_d_g(m_g)
-        nx_g = d_g_2_nx_g(d_g)
         t = 0
         for _ in range(n_graphs):
+            m_g = rand_matr_pos_graph(n, sparse_factor)
+            d_g= m_g_2_d_g(m_g)
+            nx_g = d_g_2_nx_g(d_g)
             for i in range(n):
                 ini = time.time()
                 nx.single_source_dijkstra(nx_g, i)
