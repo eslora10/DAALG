@@ -1,4 +1,5 @@
 import numpy as np
+import copy
 
 def rand_matr_pos_multi_graph(n_nodes, prob, num_max_multiple_edges=3):
     """ Genera una matriz de adyacencia para un multigrafo aleatoria de tamaño
@@ -125,8 +126,8 @@ def is_there_euler_path_directed_multigraph(d_gm):
     :type return: bool
     '''
     adj, inc = adj_inc_directed_multigraph(d_gm)
-    cmp = [adj[i]==inc[i] for i in range(len(adj))]
-    # i
+    cmp = [adj[i]!=inc[i] for i in range(len(adj))]
+
     print(cmp)
 
 print(is_there_euler_path_directed_multigraph(prueba_d))
@@ -134,6 +135,10 @@ print(is_there_euler_path_directed_multigraph(prueba_d))
 def first_last_euler_path_directed_multigraph(d_mg):
     ''' devuelve el punto inicial y el final de un camino euleriano del multigrafo
     d_mg EN CASO DE QUE EXISTA dicho camino. de no ser asi devuelve una tupla vacia
+    :d_mg: multigrafo dirigido
+    :type d_mg: dict of dict of dict
+    :return: (ini,fin)
+    :return type: tupla con el nodo inicial y final
     '''
 
 
@@ -147,10 +152,23 @@ print(first_last_euler_path_directed_multigraph(d_mg))
 
 def euler_walk_directed_multigraph(u, d_mg):
     '''
+
+    :u:nodo inicial en el que se inicie el paseo
+    :d_mg: multigrafo dirigido
+    :type u: int
+    :type d_mg: dict of dict of dict
+    :return:
+    :return type:
     '''
+    dcopy= copy.deepcopy(d_mg)
     pass
 
-def next_first_node(l_path, d_mg)):
+def next_first_node(l_path, d_mg):
     '''
+
+    :l_path:
+    :d_mg:
+    :return:
+    :return type:
     '''
     pass
