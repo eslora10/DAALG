@@ -300,13 +300,15 @@ def spectrum(sequence, len_read):
     :return:lista con las lecturas de longitud len_read desordenadas
     :return type: list
     '''
-
-    l=set()
-    for i in range(len(s)-len_read+1):
-        l.add(s[i:i+len_read])
-
-    return random.shuffle(list(l))
-
+    l = {sequence[i:i+len_read] for i in range(len(sequence)-len_read+1)}
+    """
+    l=set([])
+    for i in range(len(sequence)-len_read+1):
+        l.add(sequence[i:i+len_read])
+    """
+    l = list(l)
+    random.shuffle(l)
+    return l
 
 def spectrum_2(spectr):
     '''Genera el (l-1)-espectro a partir del espectro pasado por argumento
@@ -321,5 +323,39 @@ def spectrum_2(spectr):
     for s in spectr:
         for i in range(long-1):
             l.add(s[i:i+long-1])
+    l = list(l)
+    random.shuffle(l)
+    return l
 
-    return random.shuffle(list(l))
+def spectrum_2_undirected_graph(spectr):
+    ''' Devuelve el multigrafo dirigido formado a partir del espectro
+    :spectr: espectro
+    :type spectr: list
+    :return: multigrafo dirigido
+    :return type: dict of dict of dict
+    '''
+    # Generamos el (l-1)-espectro a partir de spectr
+    l_spectr = spectrum_2(spectr)
+    d_mg = {}
+    i = 0
+    for seq in l_spectr:
+        # Conseguir todas las palabras que empiezan por seq
+        # Quedarnos con el final de la palabra
+        next = [l_spectr.index(s[1:]) for s in spectr if s[:len(seq)]==seq]
+        print(i, next)
+        if next:
+            nodes, nedges = np.unique(next, return_counts=True)
+            d_mg[i] = {j: {n: 1 for n in nedges} for j in nodes}
+        i+=1
+    return d_mg
+
+#seq=random_sequence(9)
+seq='TAAAGTGTC'
+print(seq)
+spec=spectrum(seq, 3)
+print(spec)
+spec2=spectrum_2(spec)
+print(spec2)
+print('generamos grafo a partir de spec:')
+d_mg = spectrum_2_undirected_graph(spec)
+print_multi_graph(d_mg)
