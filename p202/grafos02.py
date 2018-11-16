@@ -20,9 +20,6 @@ def rand_matr_pos_multi_graph(n_nodes, prob, num_max_multiple_edges=3):
     """
     return np.random.binomial(num_max_multiple_edges, prob, size=(n_nodes, n_nodes))
 
-m_mg = rand_matr_pos_multi_graph(3, 0.5)
-print(m_mg)
-
 def m_mg_2_d_mg(m_mg):
     ''' Dada una matriz de adyacencia, la convierte en un diccionario de multigrafo.
     :m_mg: matriz de adyacencia
@@ -40,9 +37,6 @@ def m_mg_2_d_mg(m_mg):
                 except KeyError:
                     d_mg [i] = {j: {x: 1 for x in range(m_mg[i][j])}}
     return d_mg
-
-d_mg = m_mg_2_d_mg(m_mg)
-print(d_mg)
 
 def rand_unweighted_multigraph(n_nodes, num_max_multiple_edges=3, prob=0.5):
     ''' Funcion que genera un multigrafo en forma de diccionario sin pesos con
@@ -90,8 +84,6 @@ def print_multi_graph(g):
                     s+=" {0}: {1}".format(e, g[u][v][e])
             print(s)
 
-print_multi_graph(d_mg)
-
 def adj_inc_directed_multigraph(d_mg):
     ''' Funcion que devuelve la lista de adyacencia adj y la lista de incidencia inc
     a partir de un multigrafo dado
@@ -120,14 +112,7 @@ def adj_inc_directed_multigraph(d_mg):
             adj[u]+=len(d_mg[u][v])
     return adj, inc
 
-print(adj_inc_directed_multigraph(d_mg))
-
-#prueba = np.array([[0,1,1],[0,0,1],[1,0,0]])
-prueba = np.array([[0,1,1,1,0],[1,0,1,1,0],[1,1,0,1,1],[1,1,1,0,1],[0,0,1,1,0]])
-prueba_d = m_mg_2_d_mg(prueba)
-print(prueba)
-
-def my_is_there_euler_path_directed_multigraph(d_gm):
+def my_isthere_euler_path_directed_multigraph(d_gm):
     adj, inc = adj_inc_directed_multigraph(d_gm)
     cmp = [adj[i]==inc[i] for i in range(len(adj))]
     ini = False
@@ -146,17 +131,14 @@ def my_is_there_euler_path_directed_multigraph(d_gm):
 
     return True, (iniNode, finNode)
 
-def is_there_euler_path_directed_multigraph(d_mg):
+def isthere_euler_path_directed_multigraph(d_mg):
     ''' Comprueba si existen caminos eulerianos en un multigrafo dirigido
     :d_mg: multigrafo dirigido
     :type d_mg: dict of dict of dict
     :return: True si hay caminos eulerianos, False en caso contrario
     :type return: bool
     '''
-    return my_is_there_euler_path_directed_multigraph(d_mg)[0]
-
-
-print("RES:", is_there_euler_path_directed_multigraph(prueba_d))
+    return my_isthere_euler_path_directed_multigraph(d_mg)[0]
 
 def first_last_euler_path_directed_multigraph(d_mg):
     ''' devuelve el punto inicial y el final de un camino euleriano del multigrafo
@@ -166,10 +148,7 @@ def first_last_euler_path_directed_multigraph(d_mg):
     :return: (ini,fin)
     :return type: tupla con el nodo inicial y final
     '''
-    return my_is_there_euler_path_directed_multigraph(d_mg)[1]
-
-
-print(first_last_euler_path_directed_multigraph(prueba_d))
+    return my_isthere_euler_path_directed_multigraph(d_mg)[1]
 
 def euler_walk_directed_multigraph(u, d_mg):
     '''Antes de usar esta funcion debe comprobarse si existe un camino eulerianos
@@ -186,14 +165,17 @@ def euler_walk_directed_multigraph(u, d_mg):
     '''
     pi = [u]
     while u in d_mg:
-        v = sorted(d_mg[u].keys())[0]
-        pi.append(v)
-        d_mg[u][v].pop(max(d_mg[u][v]))
-        if not d_mg[u][v]:
-            d_mg[u].pop(v)
-        if not d_mg[u]:
+        if d_mg[u]:
+            v = sorted(d_mg[u].keys())[0]
+            pi.append(v)
+            d_mg[u][v].pop(max(d_mg[u][v]))
+            if not d_mg[u][v]:
+                d_mg[u].pop(v)
+            if not d_mg[u]:
+                d_mg.pop(u)
+            u = v
+        else:
             d_mg.pop(u)
-        u = v
     return pi
 
 def next_first_node(l_path, d_mg):
@@ -208,8 +190,8 @@ def next_first_node(l_path, d_mg):
     :return type: integer
     '''
     adj, inc = adj_inc_directed_multigraph(d_mg)
-    for node in l_path:
-        if adj[node]:
+    for node in d_mg.keys():
+        if adj[node] and node in l_path:
             return node
 
 def path_stitch(path_1, path_2):
@@ -244,7 +226,6 @@ def euler_path_directed_multigraph(d_mg):
         path = []
     return path
 
-print(euler_path_directed_multigraph(prueba_d))
 
 def isthere_euler_circuit_directed_multigraph(d_mg):
     '''Comprueba si existen circuitos eulerianos en un multigrafo dirigido
@@ -273,8 +254,6 @@ def euler_circuit_directed_multigraph(d_mg, u=0):
     else:
         return []
 
-print(euler_circuit_directed_multigraph(prueba_d))
-
 
 ###########################SECUENCIACION DE LECTURAS###########################
 
@@ -300,13 +279,16 @@ def spectrum(sequence, len_read):
     :return:lista con las lecturas de longitud len_read desordenadas
     :return type: list
     '''
-    l = {sequence[i:i+len_read] for i in range(len(sequence)-len_read+1)}
+    # l = {sequence[i:i+len_read] for i in range(len(sequence)-len_read+1)}
+    # NOTE: HE QUITADO EL SET PORQUE SI NO NO ME CREA RAMAS DOBLES Y EN CASOS
+    # ESPECIALES FALLA
+    l = [sequence[i:i+len_read] for i in range(len(sequence)-len_read+1)]
     """
     l=set([])
     for i in range(len(sequence)-len_read+1):
         l.add(sequence[i:i+len_read])
     """
-    l = list(l)
+    #l = list(l)
     random.shuffle(l)
     return l
 
@@ -321,13 +303,15 @@ def spectrum_2(spectr):
     l=set()
 
     for s in spectr:
-        for i in range(long-1):
-            l.add(s[i:i+long-1])
+        #for i in range(long-1):
+        #    l.add(s[i:i+long-1])
+        l.add(s[1:])
+        l.add(s[:-1])
     l = list(l)
-    random.shuffle(l)
+    #random.shuffle(l)
     return l
 
-def spectrum_2_undirected_graph(spectr):
+def spectrum_2_graph(spectr):
     ''' Devuelve el multigrafo dirigido formado a partir del espectro
     :spectr: espectro
     :type spectr: list
@@ -335,27 +319,61 @@ def spectrum_2_undirected_graph(spectr):
     :return type: dict of dict of dict
     '''
     # Generamos el (l-1)-espectro a partir de spectr
-    l_spectr = spectrum_2(spectr)
+    spectr2 = spectrum_2(spectr)
     d_mg = {}
-    i = 0
-    for seq in l_spectr:
-        # Conseguir todas las palabras que empiezan por seq
-        # Quedarnos con el final de la palabra
-        next = [l_spectr.index(s[1:]) for s in spectr if s[:len(seq)]==seq]
-        print(i, next)
-        if next:
-            nodes, nedges = np.unique(next, return_counts=True)
-            d_mg[i] = {j: {n: 1 for n in nedges} for j in nodes}
-        i+=1
+    for u in spectr2:
+        u_index=spectr2.index(u)
+        d_mg[u_index] = {}
+        for v in spectr:
+            if u in v[:-1]:
+                v_index = spectr2.index(v[1:])
+                if v_index not in d_mg[u_index].keys():
+                    d_mg[u_index][v_index] = {}
+                    d_mg[u_index][v_index][0] = 1
+                    i=1
+                else:
+                    i = len(d_mg[u_index][v_index].keys())+1
+                    d_mg[u_index][v_index][i] = 1
+        if not d_mg[u_index]:
+            d_mg.pop(u_index)
     return d_mg
 
-#seq=random_sequence(9)
-seq='TAAAGTGTC'
-print(seq)
-spec=spectrum(seq, 3)
-print(spec)
-spec2=spectrum_2(spec)
-print(spec2)
-print('generamos grafo a partir de spec:')
-d_mg = spectrum_2_undirected_graph(spec)
-print_multi_graph(d_mg)
+
+######################### III-C ###########################
+def path_2_sequence(l_path, spectrum_2):
+    ''' Construye la cadena de caracteres asociada al camino euleriano sobre
+    el grafo del l-1-espectro
+    :l_path: lista con el camino resultante del camino euleriano
+    :spectrum_2: espectro de l-1
+    :type l_path: list
+    :type spectrum_2: list
+    :return: secuencia asociada a la enumeracion del l-1 espectro
+    :return type: string
+    '''
+    seq = spectrum_2[l_path[0]]
+    for node in l_path[1:]:
+        seq+=spectrum_2[node][-1]
+
+    return seq
+
+def check_sequencing(len_seq, len_read):
+    ''' Dada la longitud, genera una cadena aleatoria y su espectro para
+    recontruirla y comprobar la correccion del algoritmo.
+    :len_seq: Longitud de la sequencia DNA
+    :type len_seq: integer
+    :len_read: Tamano del espectro
+    :type len_read: integer
+    :return: OK o ERR
+    :type return: boolean
+    '''
+    seq = random_sequence(len_seq)
+    spectr = spectrum(seq, len_read)
+    spectr2 = spectrum_2(spectr)
+    d_mg = spectrum_2_graph(spectr)
+    if isthere_euler_circuit_directed_multigraph(d_mg):
+        path = euler_circuit_directed_multigraph(d_mg)
+        seq2 = path_2_sequence(path, spectr2)
+    else:
+        path = euler_path_directed_multigraph(d_mg)
+        seq2 = path_2_sequence(path, spectr2)
+    return sorted(spectr)==sorted(spectrum(seq2, len_read))
