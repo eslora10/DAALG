@@ -283,11 +283,6 @@ def spectrum(sequence, len_read):
     # NOTE: HE QUITADO EL SET PORQUE SI NO NO ME CREA RAMAS DOBLES Y EN CASOS
     # ESPECIALES FALLA
     l = [sequence[i:i+len_read] for i in range(len(sequence)-len_read+1)]
-    """
-    l=set([])
-    for i in range(len(sequence)-len_read+1):
-        l.add(sequence[i:i+len_read])
-    """
     #l = list(l)
     random.shuffle(l)
     return l
