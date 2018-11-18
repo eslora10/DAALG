@@ -113,6 +113,8 @@ def adj_inc_directed_multigraph(d_mg):
     return adj, inc
 
 def my_isthere_euler_path_directed_multigraph(d_gm):
+    ''' funcion interna
+    '''
     adj, inc = adj_inc_directed_multigraph(d_gm)
     cmp = [adj[i]==inc[i] for i in range(len(adj))]
     ini = False
@@ -239,7 +241,13 @@ def isthere_euler_circuit_directed_multigraph(d_mg):
     return sum(cmp)==0
 
 def euler_circuit_directed_multigraph(d_mg, u=0):
-    '''
+    ''' Encuetra un circuito euleriano en un multigrafo dirigido
+    :d_mg: multigrafo dirigido
+    :type d_mg: dict of dict of dict
+    :u: nodo inicial
+    :type u: int
+    :return: circuito euleriano
+    :return type: list
     '''
     if isthere_euler_circuit_directed_multigraph(d_mg):
         dcopy = copy.deepcopy(d_mg)

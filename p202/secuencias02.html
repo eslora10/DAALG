@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0039)http://localhost:1234/secuencias02.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Pydoc: module secuencias02</title>
+
+<link rel="stylesheet" type="text/css" href="./secuencias02_files/_pydoc.css"></head><body bgcolor="#f0f0f8">
+            <div style="float:left">
+                Python 3.6.6 [default, GCC 8.0.1 20180414 (experimental) [trunk revision 259383]<br>Linux-4.15.0-39-generic-x86_64-with-glibc2.9
+            </div>
+            <div style="float:right">
+                <div style="text-align:center">
+                  <a href="http://localhost:1234/index.html">Module Index</a>
+                  : <a href="http://localhost:1234/topics.html">Topics</a>
+                  : <a href="http://localhost:1234/keywords.html">Keywords</a>
+                </div>
+                <div>
+                    <form action="http://localhost:1234/get" style="display:inline;">
+                      <input type="text" name="key" size="15">
+                      <input type="submit" value="Get">
+                    </form>&nbsp;
+                    <form action="http://localhost:1234/search" style="display:inline;">
+                      <input type="text" name="key" size="15">
+                      <input type="submit" value="Search">
+                    </form>
+                </div>
+            </div>
+            <div style="clear:both;padding-top:.5em;">
+<table width="100%" cellspacing="0" cellpadding="2" border="0" summary="heading">
+<tbody><tr bgcolor="#7799ee">
+<td valign="bottom">&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>secuencias02</strong></big></big></font></td><td align="right" valign="bottom"><font color="#ffffff" face="helvetica, arial"><a href="http://localhost:1234/">index</a><br><a href="http://localhost:1234/getfile?key=/home/ton/UNI/DAALG/p202/secuencias02.py">/home/ton/UNI/DAALG/p202/secuencias02.py</a></font></td></tr></tbody></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing="0" cellpadding="2" border="0" summary="section">
+<tbody><tr bgcolor="#aa55cc">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tbody><tr><td width="25%" valign="top"><a href="http://localhost:1234/copy.html">copy</a><br>
+</td><td width="25%" valign="top"><a href="http://localhost:1234/numpy.html">numpy</a><br>
+</td><td width="25%" valign="top"><a href="http://localhost:1234/random.html">random</a><br>
+</td><td width="25%" valign="top"></td></tr></tbody></table></td></tr></tbody></table></p><p>
+<table width="100%" cellspacing="0" cellpadding="2" border="0" summary="section">
+<tbody><tr bgcolor="#eeaa77">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-adj_inc_directed_multigraph"><strong>adj_inc_directed_multigraph</strong></a>(d_mg)</dt><dd><tt>Funcion&nbsp;que&nbsp;devuelve&nbsp;la&nbsp;lista&nbsp;de&nbsp;adyacencia&nbsp;adj&nbsp;y&nbsp;la&nbsp;lista&nbsp;de&nbsp;incidencia&nbsp;inc<br>
+a&nbsp;partir&nbsp;de&nbsp;un&nbsp;multigrafo&nbsp;dado<br>
+:d_mg:&nbsp;multigrafo<br>
+:type&nbsp;d_mg:&nbsp;dict&nbsp;of&nbsp;dict&nbsp;of&nbsp;dict<br>
+:return:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;adj:&nbsp;lista&nbsp;de&nbsp;adyacencia&nbsp;del&nbsp;multigrado<br>
+&nbsp;&nbsp;&nbsp;&nbsp;inc:&nbsp;lista&nbsp;de&nbsp;incidencia&nbsp;del&nbsp;multigrafo<br>
+:return&nbsp;types:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;adj:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;inc:&nbsp;list</tt></dd></dl>
+ <dl><dt><a name="-check_sequencing"><strong>check_sequencing</strong></a>(len_seq, len_read)</dt><dd><tt>Dada&nbsp;la&nbsp;longitud,&nbsp;genera&nbsp;una&nbsp;cadena&nbsp;aleatoria&nbsp;y&nbsp;su&nbsp;espectro&nbsp;para<br>
+recontruirla&nbsp;y&nbsp;comprobar&nbsp;la&nbsp;correccion&nbsp;del&nbsp;algoritmo.<br>
+:len_seq:&nbsp;Longitud&nbsp;de&nbsp;la&nbsp;sequencia&nbsp;DNA<br>
+:type&nbsp;len_seq:&nbsp;integer<br>
+:len_read:&nbsp;Tamano&nbsp;del&nbsp;espectro<br>
+:type&nbsp;len_read:&nbsp;integer<br>
+:return:&nbsp;OK&nbsp;o&nbsp;ERR<br>
+:type&nbsp;return:&nbsp;boolean</tt></dd></dl>
+ <dl><dt><a name="-euler_circuit_directed_multigraph"><strong>euler_circuit_directed_multigraph</strong></a>(d_mg, u=0)</dt><dd><tt>Encuetra&nbsp;un&nbsp;circuito&nbsp;euleriano&nbsp;en&nbsp;un&nbsp;multigrafo&nbsp;dirigido<br>
+:d_mg:&nbsp;multigrafo&nbsp;dirigido<br>
+:type&nbsp;d_mg:&nbsp;dict&nbsp;of&nbsp;dict&nbsp;of&nbsp;dict<br>
+:u:&nbsp;nodo&nbsp;inicial<br>
+:type&nbsp;u:&nbsp;int<br>
+:return:&nbsp;circuito&nbsp;euleriano<br>
+:return&nbsp;type:&nbsp;list</tt></dd></dl>
+ <dl><dt><a name="-euler_path_directed_multigraph"><strong>euler_path_directed_multigraph</strong></a>(d_mg)</dt><dd><tt>Busca&nbsp;un&nbsp;camino&nbsp;euleriano&nbsp;en&nbsp;un&nbsp;grafo<br>
+:d_mg:&nbsp;multigrafo&nbsp;dirigido<br>
+:type&nbsp;d_mg:&nbsp;dict&nbsp;of&nbsp;dict&nbsp;of&nbsp;dict<br>
+:return:&nbsp;lista&nbsp;con&nbsp;el&nbsp;camino<br>
+:return&nbsp;type:&nbsp;list</tt></dd></dl>
+ <dl><dt><a name="-euler_walk_directed_multigraph"><strong>euler_walk_directed_multigraph</strong></a>(u, d_mg)</dt><dd><tt>Antes&nbsp;de&nbsp;usar&nbsp;esta&nbsp;funcion&nbsp;debe&nbsp;comprobarse&nbsp;si&nbsp;existe&nbsp;un&nbsp;camino&nbsp;eulerianos<br>
+y&nbsp;debe&nbsp;iniciarse&nbsp;en&nbsp;el&nbsp;nodo&nbsp;correcto&nbsp;u.&nbsp;De&nbsp;no&nbsp;ser&nbsp;asi,&nbsp;esta&nbsp;funcion&nbsp;de&nbsp;devolvera<br>
+un&nbsp;resultado&nbsp;correcto.<br>
+Ademas,&nbsp;esta&nbsp;funcion&nbsp;es&nbsp;DESTRUCTIVA.&nbsp;recomendamos&nbsp;utilizar&nbsp;una&nbsp;copia&nbsp;del&nbsp;diccionario<br>
+con&nbsp;copy.deepcopy<br>
+:u:nodo&nbsp;inicial&nbsp;en&nbsp;el&nbsp;que&nbsp;se&nbsp;inicie&nbsp;el&nbsp;paseo<br>
+:d_mg:&nbsp;multigrafo&nbsp;dirigido<br>
+:type&nbsp;u:&nbsp;int<br>
+:type&nbsp;d_mg:&nbsp;dict&nbsp;of&nbsp;dict&nbsp;of&nbsp;dict<br>
+:return:<br>
+:return&nbsp;type:</tt></dd></dl>
+ <dl><dt><a name="-first_last_euler_path_directed_multigraph"><strong>first_last_euler_path_directed_multigraph</strong></a>(d_mg)</dt><dd><tt>devuelve&nbsp;el&nbsp;punto&nbsp;inicial&nbsp;y&nbsp;el&nbsp;final&nbsp;de&nbsp;un&nbsp;camino&nbsp;euleriano&nbsp;del&nbsp;multigrafo<br>
+d_mg&nbsp;EN&nbsp;CASO&nbsp;DE&nbsp;QUE&nbsp;EXISTA&nbsp;dicho&nbsp;camino.&nbsp;de&nbsp;no&nbsp;ser&nbsp;asi&nbsp;devuelve&nbsp;una&nbsp;tupla&nbsp;vacia<br>
+:d_mg:&nbsp;multigrafo&nbsp;dirigido<br>
+:type&nbsp;d_mg:&nbsp;dict&nbsp;of&nbsp;dict&nbsp;of&nbsp;dict<br>
+:return:&nbsp;(ini,fin)<br>
+:return&nbsp;type:&nbsp;tupla&nbsp;con&nbsp;el&nbsp;nodo&nbsp;inicial&nbsp;y&nbsp;final</tt></dd></dl>
+ <dl><dt><a name="-graph_2_multigraph"><strong>graph_2_multigraph</strong></a>(g)</dt><dd><tt>Funcion&nbsp;que&nbsp;genera&nbsp;un&nbsp;multigrado&nbsp;con&nbsp;la&nbsp;implementacion&nbsp;de&nbsp;tripre&nbsp;diccionario<br>
+a&nbsp;partir&nbsp;de&nbsp;un&nbsp;grafo&nbsp;con&nbsp;la&nbsp;antigua&nbsp;implementacion&nbsp;de&nbsp;doble&nbsp;diccionario<br>
+:g:&nbsp;grafo<br>
+:type&nbsp;g:&nbsp;{node&nbsp;origen:&nbsp;{node&nbsp;destino:&nbsp;valor}}<br>
+:return:&nbsp;multigrafo<br>
+:return&nbsp;type:&nbsp;{origen:&nbsp;{destino:&nbsp;{num_edges:&nbsp;num}}}</tt></dd></dl>
+ <dl><dt><a name="-isthere_euler_circuit_directed_multigraph"><strong>isthere_euler_circuit_directed_multigraph</strong></a>(d_mg)</dt><dd><tt>Comprueba&nbsp;si&nbsp;existen&nbsp;circuitos&nbsp;eulerianos&nbsp;en&nbsp;un&nbsp;multigrafo&nbsp;dirigido<br>
+:d_mg:&nbsp;multigrafo&nbsp;dirigido<br>
+:type&nbsp;d_mg:&nbsp;dict&nbsp;of&nbsp;dict&nbsp;of&nbsp;dict<br>
+:return:&nbsp;True&nbsp;si&nbsp;hay&nbsp;circuitos&nbsp;eulerianos,&nbsp;False&nbsp;en&nbsp;caso&nbsp;contrario<br>
+:type&nbsp;return:&nbsp;bool</tt></dd></dl>
+ <dl><dt><a name="-isthere_euler_path_directed_multigraph"><strong>isthere_euler_path_directed_multigraph</strong></a>(d_mg)</dt><dd><tt>Comprueba&nbsp;si&nbsp;existen&nbsp;caminos&nbsp;eulerianos&nbsp;en&nbsp;un&nbsp;multigrafo&nbsp;dirigido<br>
+:d_mg:&nbsp;multigrafo&nbsp;dirigido<br>
+:type&nbsp;d_mg:&nbsp;dict&nbsp;of&nbsp;dict&nbsp;of&nbsp;dict<br>
+:return:&nbsp;True&nbsp;si&nbsp;hay&nbsp;caminos&nbsp;eulerianos,&nbsp;False&nbsp;en&nbsp;caso&nbsp;contrario<br>
+:type&nbsp;return:&nbsp;bool</tt></dd></dl>
+ <dl><dt><a name="-m_mg_2_d_mg"><strong>m_mg_2_d_mg</strong></a>(m_mg)</dt><dd><tt>Dada&nbsp;una&nbsp;matriz&nbsp;de&nbsp;adyacencia,&nbsp;la&nbsp;convierte&nbsp;en&nbsp;un&nbsp;diccionario&nbsp;de&nbsp;multigrafo.<br>
+:m_mg:&nbsp;matriz&nbsp;de&nbsp;adyacencia<br>
+:type&nbsp;m_mg:&nbsp;numpy&nbsp;array<br>
+:return&nbsp;d_mg:&nbsp;diccionario&nbsp;de&nbsp;multigrafo<br>
+:type&nbsp;return&nbsp;d_mg:&nbsp;dict&nbsp;of&nbsp;dict&nbsp;of&nbsp;dict</tt></dd></dl>
+ <dl><dt><a name="-my_isthere_euler_path_directed_multigraph"><strong>my_isthere_euler_path_directed_multigraph</strong></a>(d_gm)</dt><dd><tt>funcion&nbsp;interna</tt></dd></dl>
+ <dl><dt><a name="-next_first_node"><strong>next_first_node</strong></a>(l_path, d_mg)</dt><dd><tt>Devuelve&nbsp;el&nbsp;nodo&nbsp;en&nbsp;el&nbsp;que&nbsp;continuar&nbsp;el&nbsp;camino&nbsp;euleriano.<br>
+:l_path:&nbsp;camino&nbsp;euleriano&nbsp;actual&nbsp;desde&nbsp;el&nbsp;que&nbsp;debemos&nbsp;continuar.&nbsp;Se&nbsp;escoge&nbsp;el<br>
+&nbsp;&nbsp;&nbsp;&nbsp;nodo&nbsp;del&nbsp;que&nbsp;debemos&nbsp;encontrar&nbsp;un&nbsp;circuito&nbsp;euleriano.<br>
+:d_mg:&nbsp;representacion&nbsp;del&nbsp;grafo&nbsp;resultante&nbsp;tras&nbsp;las&nbsp;anteriores&nbsp;iteraciones&nbsp;del<br>
+&nbsp;&nbsp;&nbsp;&nbsp;algoritmo<br>
+:type&nbsp;l_path:&nbsp;list<br>
+:type&nbsp;d_mg:&nbsp;dict&nbsp;of&nbsp;dict&nbsp;of&nbsp;dict<br>
+:return:&nbsp;nodo&nbsp;en&nbsp;el&nbsp;que&nbsp;se&nbsp;debe&nbsp;iniciar&nbsp;un&nbsp;nuevo&nbsp;camino.<br>
+:return&nbsp;type:&nbsp;integer</tt></dd></dl>
+ <dl><dt><a name="-path_2_sequence"><strong>path_2_sequence</strong></a>(l_path, spectrum_2)</dt><dd><tt>Construye&nbsp;la&nbsp;cadena&nbsp;de&nbsp;caracteres&nbsp;asociada&nbsp;al&nbsp;camino&nbsp;euleriano&nbsp;sobre<br>
+el&nbsp;grafo&nbsp;del&nbsp;l-1-espectro<br>
+:l_path:&nbsp;lista&nbsp;con&nbsp;el&nbsp;camino&nbsp;resultante&nbsp;del&nbsp;camino&nbsp;euleriano<br>
+:spectrum_2:&nbsp;espectro&nbsp;de&nbsp;l-1<br>
+:type&nbsp;l_path:&nbsp;list<br>
+:type&nbsp;spectrum_2:&nbsp;list<br>
+:return:&nbsp;secuencia&nbsp;asociada&nbsp;a&nbsp;la&nbsp;enumeracion&nbsp;del&nbsp;l-1&nbsp;espectro<br>
+:return&nbsp;type:&nbsp;string</tt></dd></dl>
+ <dl><dt><a name="-path_stitch"><strong>path_stitch</strong></a>(path_1, path_2)</dt><dd><tt>Pega&nbsp;path_2&nbsp;en&nbsp;path_1&nbsp;de&nbsp;manera&nbsp;correcta.<br>
+:path_1:&nbsp;Camino&nbsp;inicial<br>
+:path_2:&nbsp;Camino&nbsp;a&nbsp;adherir<br>
+:type&nbsp;path_1:&nbsp;list&nbsp;of&nbsp;integers<br>
+:type&nbsp;path_2:&nbsp;list&nbsp;of&nbsp;integers<br>
+:return:&nbsp;camino&nbsp;resultante<br>
+:return&nbsp;type:&nbsp;list&nbsp;of&nbsp;integers</tt></dd></dl>
+ <dl><dt><a name="-print_multi_graph"><strong>print_multi_graph</strong></a>(g)</dt><dd><tt>Dado&nbsp;un&nbsp;multigrafo&nbsp;imprime&nbsp;cada&nbsp;una&nbsp;de&nbsp;sus&nbsp;ramas&nbsp;como&nbsp;(u,v)&nbsp;junto&nbsp;con&nbsp;las<br>
+ramas&nbsp;del&nbsp;multigrafo.<br>
+:g:&nbsp;multigrafo<br>
+:type&nbsp;g:&nbsp;dict&nbsp;of&nbsp;dict&nbsp;of&nbsp;dict</tt></dd></dl>
+ <dl><dt><a name="-rand_matr_pos_multi_graph"><strong>rand_matr_pos_multi_graph</strong></a>(n_nodes, prob, num_max_multiple_edges=3)</dt><dd><tt>Genera&nbsp;una&nbsp;matriz&nbsp;de&nbsp;adyacencia&nbsp;para&nbsp;un&nbsp;multigrafo&nbsp;aleatoria&nbsp;de&nbsp;tamaño<br>
+n_nodes&nbsp;x&nbsp;n_nodes,&nbsp;con&nbsp;un&nbsp;factor&nbsp;de&nbsp;dispersion&nbsp;de&nbsp;sparse_factor.&nbsp;En&nbsp;la&nbsp;que<br>
+el&nbsp;valor&nbsp;maximo&nbsp;viene&nbsp;especificado&nbsp;por&nbsp;max_weight&nbsp;y&nbsp;en&nbsp;la&nbsp;que&nbsp;los&nbsp;elementos<br>
+tienen&nbsp;tantos&nbsp;decimales&nbsp;como&nbsp;decimales<br>
+:n_nodes:&nbsp;numero&nbsp;de&nbsp;nodos&nbsp;del&nbsp;grafos<br>
+:prob:&nbsp;factor&nbsp;de&nbsp;dispersion&nbsp;de&nbsp;la&nbsp;matriz<br>
+:max_weight:&nbsp;valor&nbsp;maximo&nbsp;de&nbsp;los&nbsp;pesos&nbsp;de&nbsp;la&nbsp;matriz<br>
+:decimals:&nbsp;numero&nbsp;de&nbsp;decimales&nbsp;que&nbsp;queremos&nbsp;que&nbsp;tengan&nbsp;los&nbsp;elementos&nbsp;de&nbsp;la&nbsp;matriz<br>
+:type&nbsp;n_nodes:&nbsp;int<br>
+:type&nbsp;prob:&nbsp;float&nbsp;in&nbsp;[0,1]<br>
+:type&nbsp;max_weight:&nbsp;float<br>
+:type&nbsp;decimals:&nbsp;int<br>
+:return:&nbsp;matriz&nbsp;de&nbsp;adyacencia&nbsp;que&nbsp;representa&nbsp;un&nbsp;grafos<br>
+:return&nbsp;type:&nbsp;np&nbsp;2&nbsp;dimentional&nbsp;array</tt></dd></dl>
+ <dl><dt><a name="-rand_unweighted_multigraph"><strong>rand_unweighted_multigraph</strong></a>(n_nodes, num_max_multiple_edges=3, prob=0.5)</dt><dd><tt>Funcion&nbsp;que&nbsp;genera&nbsp;un&nbsp;multigrafo&nbsp;en&nbsp;forma&nbsp;de&nbsp;diccionario&nbsp;sin&nbsp;pesos&nbsp;con<br>
+n_nodes&nbsp;node,&nbsp;en&nbsp;el&nbsp;que&nbsp;el&nbsp;numero&nbsp;maximo&nbsp;de&nbsp;ramas&nbsp;por&nbsp;nodo&nbsp;es&nbsp;num_max_multiple_edges<br>
+y&nbsp;con&nbsp;una&nbsp;probabilidad&nbsp;prob&nbsp;de&nbsp;generar&nbsp;un&nbsp;solo&nbsp;enlace<br>
+:n_nodes:&nbsp;numero&nbsp;de&nbsp;nodos&nbsp;del&nbsp;multigrafo<br>
+:num_max_multiple_edges:&nbsp;numero&nbsp;maximo&nbsp;de&nbsp;ramas&nbsp;entre&nbsp;dos&nbsp;nodos<br>
+:prob:&nbsp;probabilidad&nbsp;de&nbsp;tener&nbsp;una&nbsp;sola&nbsp;rama&nbsp;entre&nbsp;dos&nbsp;nodos<br>
+:type&nbsp;n_nodes:&nbsp;int<br>
+:type&nbsp;num_max_multiple_edges:&nbsp;int<br>
+:type&nbsp;prob:&nbsp;float&nbsp;in&nbsp;[0,1]</tt></dd></dl>
+ <dl><dt><a name="-random_sequence"><strong>random_sequence</strong></a>(len_seq)</dt><dd><tt>Genera&nbsp;una&nbsp;secuencia&nbsp;aleatoria&nbsp;con&nbsp;los&nbsp;caracteres&nbsp;(A,&nbsp;C,&nbsp;G,&nbsp;T)&nbsp;de&nbsp;longitud&nbsp;len_seq<br>
+:len_seq:&nbsp;longitud&nbsp;de&nbsp;la&nbsp;secuencia<br>
+:type&nbsp;len_seq:&nbsp;int<br>
+:return:&nbsp;secuencia<br>
+:return&nbsp;type:&nbsp;str</tt></dd></dl>
+ <dl><dt><a name="-spectrum"><strong>spectrum</strong></a>(sequence, len_read)</dt><dd><tt>Genera&nbsp;el&nbsp;espectro&nbsp;de&nbsp;la&nbsp;cadena&nbsp;sequence&nbsp;de&nbsp;longitud&nbsp;len_seq.<br>
+Devuelve&nbsp;una&nbsp;lista&nbsp;con&nbsp;las&nbsp;lecturas&nbsp;de&nbsp;longitud&nbsp;len_read&nbsp;desordenadas<br>
+:sequence:&nbsp;secuencia<br>
+:len_read:&nbsp;tamaño&nbsp;de&nbsp;las&nbsp;lecturas<br>
+:type&nbsp;sequence:&nbsp;str<br>
+:type&nbsp;len_read:&nbsp;int<br>
+:return:lista&nbsp;con&nbsp;las&nbsp;lecturas&nbsp;de&nbsp;longitud&nbsp;len_read&nbsp;desordenadas<br>
+:return&nbsp;type:&nbsp;list</tt></dd></dl>
+ <dl><dt><a name="-spectrum_2"><strong>spectrum_2</strong></a>(spectr)</dt><dd><tt>Genera&nbsp;el&nbsp;(l-1)-espectro&nbsp;a&nbsp;partir&nbsp;del&nbsp;espectro&nbsp;pasado&nbsp;por&nbsp;argumento<br>
+:spectr:&nbsp;espectro<br>
+:type&nbsp;spectr:&nbsp;list<br>
+:return:&nbsp;lista&nbsp;con&nbsp;el&nbsp;(l-1)&nbsp;espectro<br>
+:return&nbsp;type:&nbsp;lista&nbsp;de&nbsp;cadenas&nbsp;de&nbsp;longitud&nbsp;l-1</tt></dd></dl>
+ <dl><dt><a name="-spectrum_2_graph"><strong>spectrum_2_graph</strong></a>(spectr)</dt><dd><tt>Devuelve&nbsp;el&nbsp;multigrafo&nbsp;dirigido&nbsp;formado&nbsp;a&nbsp;partir&nbsp;del&nbsp;espectro<br>
+:spectr:&nbsp;espectro<br>
+:type&nbsp;spectr:&nbsp;list<br>
+:return:&nbsp;multigrafo&nbsp;dirigido<br>
+:return&nbsp;type:&nbsp;dict&nbsp;of&nbsp;dict&nbsp;of&nbsp;dict</tt></dd></dl>
+</td></tr></tbody></table></p></div>
+</body></html>
