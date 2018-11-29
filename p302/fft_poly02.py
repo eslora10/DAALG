@@ -1,6 +1,13 @@
 import numpy as np
 
+import time
 ################### I-A ###################
+def _len2k(t,n):
+
+    K = int(np.ceil(np.log2(n)))
+    N = 2**K
+    return t + [0 for _ in range(N-len(t))]
+
 def fft(t):
     ''' Calcula la transformada de Fourier discreta de la tabla T
     :t: tabla sobre la que se aplica fft
@@ -17,7 +24,8 @@ def fft(t):
     r = [np.cos(2*np.pi*i/N)+1j*np.sin(2*np.pi*i/N) for i in range(N)]
 
     # Rellenar con 0 para obtener una potencia de 2
-    t = t + [0 for _ in range(N-len(t))]
+    #t = t + [0 for _ in range(N-len(t))]
+    t = _len2k(t, len(t))
 
     # Particion
     t_even = []
@@ -61,6 +69,7 @@ def invert_fft(t, fft_func=fft):
 
 #print(np.rint((invert_fft(fft([1,2,1,0,4])))))
 
+print(type(invert_fft(fft([1,2,1,0,4]))[0]))
 
 ################### I-B ###################
 
@@ -84,116 +93,214 @@ def poli_2_num(l_pol, base=10):
     del polinomio expresado en la lista l_pol. Para ello se utiliza la la regla de Horner
     :l_pol: coeficientes del polinomio
     :type l_pol: lista
-    :base: los coeficientes van de 0 a base-1; base in [2,10] inclusive
+    :base: numero en el que se evalua el polinomio
     :type base: int
     :return: numero resultante de evaluar
     :return type: int
     '''
-    pass
-    #[1,2,3] # 3*X**2+ 2*X+ 1    =34 (rvaluando en 3)
+    act=0
+    for coef in reversed(l_pol):
+        res=coef+act
+        act=res*base
+    return res
 
 def rand_numero(num_digits, base=10):
+    ''' Genera un numero aleatorio de num_digits cifras
+    :num_digits: numero de cifras
+    :type num_digits: int
+    :base: base en la que se representa el numero, por defecto decimal
+    :type base: int
+    :return: numero aleatorio de num_digits cifras
+    :return type: int
     '''
-    :num_digits:
-    :type num_digits:
-    :base:
-    :type base:
-    :return:
-    :return type:
-    '''
-    pass
+    # Generamos un polinomio con num_digits coeficientes
+    pol=rand_polinomio(long=num_digits, base=base)
+
+    # Evaluamos en la base
+    return poli_2_num(pol, base=base)
+
+#print(rand_numero(10, base=10))
 
 def num_2_poli(num, base=10):
+    ''' Devuelve un polinomio (en formato lista) con los coeficientes de
+    correspondientes al numero expresado en base base
+    :num: numero a transdormar en polinomio
+    :type num: int
+    :base: base en la que representamos el numero
+    :type base: int
+    :return: polinomio (lista de coeficientes x^0..... x^n)
+    :return type: list
     '''
-    :num:
-    :type num:
-    :base:
-    :type base:
-    :return:
-    :return type:
-    '''
-    pass
+    pol = []
+    while num > 0:
+        num, res = divmod(num, base)
+        pol.append(res)
+    return pol
+
+#print(poli_2_num(num_2_poli(2137512,base=3), base=3))
 
 def mult_polinomios(l_pol_1, l_pol_2):
+    ''' Algoritmo de miltiplicacion habitual. Como los polinomios entan
+    ordenados por potencias crecientes, la multiplicacion es de izq a der
+    :l_pol_1: polinomio 1
+    :type l_pol_1: list
+    :l_pol_2: polinomio 2
+    :type l_pol_2: list
+    :return: lista de coeficientes resultantes de la multiplicacion
+    :return type: list
     '''
-    :l_pol_1:
-    :type l_pol_1:
-    :base:
-    :type l_pol_2:
-    :return:
-    :return type:
-    '''
-    pass
+    n = len(l_pol_1) # grado pol_1 +1
+    m = len(l_pol_2) # grado pol_2 +1
+    res = [0 for _ in range(n+m-1)]
+
+    for i in range(n):
+        for j in range(m):
+            res[i+j] += l_pol_1[i]*l_pol_2[j]
+
+    return list(res)
+
+#print( mult_polinomios([1,0,2],[0,2,2]))
 
 def mult_polinomios_fft(l_pol_1, l_pol_2, fft_func=fft):
+    ''' Multiplicacion de polinomios con fft
+    :l_pol_1: polinomio 1
+    :type l_pol_1: list
+    :l_pol_2: polinomio 2
+    :type l_pol_2: list
+    :fft_func: funcion fft
+    :type fft_func: funcion
+    :return: polinomio resultado de multiplicar
+    :return type: lista de ints
     '''
-    :l_pol_1:
-    :type l_pol_1:
-    :l_pol_2:
-    :type l_pol_2:
-    :fft_func:
-    :type fft_func:
-    :return:
-    :return type:
-    '''
-    pass
+    # DFT de ambos polinomios
+    dg = len(l_pol_1)+len(l_pol_2)-1
+    pol1 = _len2k(l_pol_1, dg)
+    pol2 = _len2k(l_pol_2, dg)
 
+    coef1=fft_func(pol1)
+    coef2=fft_func(pol2)
+
+    # Multiplicacion de coeficientes
+    for i in range(len(coef1)):
+        coef1[i] *= coef2[i]
+
+    # Inversa de la DFT
+    return invert_fft(coef1)
+
+print(np.rint(mult_polinomios_fft([1,0,2],[0,2,2])))
 def mult_numeros(num1, num2):
+    ''' multiplica los numeros num1 y num2  llevamdolos a mult_polinomios
+    y multplicandolos con la funcion mult_polinomios. Despues recupera el numero
+    resultante
+    :num1: numero 1
+    :type num1: int
+    :num2: numero 2
+    :type num2: int
+    :return: numero resultante de multiplicar polinomios
+    :return type: int
     '''
-    :num1:
-    :type num1:
-    :num2:
-    :type num2:
-    :return:
-    :return type:
-    '''
-    pass
+    return poli_2_num(mult_polinomios(num_2_poli(num1), num_2_poli(num2)))
+
+print(mult_numeros(1013241293479123874981,412398471293749128))
 
 def mult_numeros_fft(num1, num2, fft_func=fft):
     '''
-    :num1:
-    :type num1:
-    :num2:
-    :type num2:
-    :fft_func:
-    :type fft_func:
+    :num1: numero 1
+    :type num1: int
+    :num2: numero 2
+    :type num2: int
+    :fft_func: funcion fft
+    :type fft_func: function
     :return:
     :return type:
     '''
-    pass
+    return int(poli_2_num(mult_polinomios_fft(num_2_poli(num1), num_2_poli(num2), fft_func=fft_func)))
 
+print(mult_numeros_fft(400000000000,50000000000000000000000))
+print(type(mult_numeros_fft(400000000000,50000000000000000000000)))
 
 ################### I-C ###################
+
+def _time_mul_func(n_pairs, num_digits_ini, num_digits_fin, step, fft_fun):
+    #TODO comprobar q va bien y generalizar a las otras
+    l=[]
+    while num_digits_ini <= num_digits_fin:
+        t=0
+        for n in range(n_pairs):
+            num1 = rand_numero(num_digits_ini)
+            num2 = rand_numero(num_digits_ini)
+            t_ini= time.time()
+            if fft_fun is not None:
+                mult_numeros_fft(num1,num2, fft_fun)
+            else:
+                mult_numeros(num1, num2)
+            t_fin = time.time()
+            t+=t_fin-t_ini
+        l.append(t/n_pairs)
+        num_digits_ini+=step
+    return l
+
 def time_mult_numeros(n_pairs, num_digits_ini, num_digits_fin, step):
+    ''' Mide el tiempo medio de multiplicar varias parejas de numeros con la el
+    algoritmo de multiplicacion estandar
+    ::n_pairs: numero de parejas a generar
+    :type n_pairs: int
+    :num_digits_ini: digitos iniciales de la pareja
+    :type num_digits_ini: int
+    :num_digits_fin:digitos finale de la pareja
+    :type num_digits_fin: int
+    :step: incremento en el numero de digitos
+    :type step: int
+    :return: lista con los tiempos
+    :return type: list
     '''
-    :n_pairs:
-    :type n_pairs:
-    :num_digits_ini:
-    :type num_digits_ini:
-    :num_digits_fin:
-    :type num_digits_fin:
-    :step:
-    :type step:
-    :return:
-    :return type:
-    '''
-    pass
+    l=[]
+    while num_digits_ini <= num_digits_fin:
+        t=0
+        for n in range(n_pairs):
+            num1 = rand_numero(num_digits_ini)
+            num2 = rand_numero(num_digits_ini)
+            t_ini= time.time()
+            mult_numeros(num1,num2)
+            t_fin = time.time()
+            t+=t_fin-t_ini
+        l.append(t/n_pairs)
+        num_digits_ini+=step
+    return l
+
+print(time_mult_numeros(10, 100, 1000, 5))
 
 def time_mult_numeros_fft(n_pairs, num_digits_ini, num_digits_fin, step, fft_func=fft):
-    '''
-    :n_pairs:
-    :type n_pairs:
-    :num_digits_ini:
-    :type num_digits_ini:
-    :num_digits_fin:
-    :type num_digits_fin:
-    :step:
-    :type step:
-    :fft_func:
+    ''' Mide el tiempo medio de multiplicar varias parejas de numeros con la el
+    algoritmo de la fft
+    :n_pairs: numero de parejas a generar
+    :type n_pairs: int
+    :num_digits_ini: digitos iniciales de la pareja
+    :type num_digits_ini: int
+    :num_digits_fin:digitos finale de la pareja
+    :type num_digits_fin: int
+    :step: incremento en el numero de digitos
+    :type step: int
+    :fft_func: funcion para la fft
     :type fft_func:
-    :return:
-    :return type:
+    :return: lista con los tiempos
+    :return type: list
     '''
-    pass
+    l = []
+    while num_digits_ini <= num_digits_fin:
+        t=0
+        for _ in range(n_pairs):
+            num1 = rand_numero(num_digits_ini)
+            num2 = rand_numero(num_digits_ini)
+            t_ini= time.time()
+            mult_numeros_fft(num1,num2, fft_func=fft_func)
+            t_fin = time.time()
+            t+=t_fin-t_ini
+        l.append(t/n_pairs)
+        num_digits_ini+=step
+    return l
+    #comprobar q va bien pork dio value error
+
+print(time_mult_numeros_fft(10, 100, 1000, 5))
 
 ################### II ###################
