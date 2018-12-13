@@ -49,13 +49,8 @@ def split_pivot(t, ini, fin, pivot=None):
     m = ini
 
     for i in range(ini, fin+1):
-        if t[i] < pivot:
-            m+=1
-            print(t[i], i, m , pivot)
-            print(t)
-            t[i], t[m] = t[m], t[i]
+        
 
-    t[ini], t[m] = t[m], t[ini]
     assert (t[m] == pivot), "El pivote no esta en la tabla"
 
     return m
