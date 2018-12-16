@@ -13,19 +13,19 @@ def split(t, ini, fin):
     :return type: int
     """
     assert (fin >= ini),"El indice final debe ser mayor que el inicial"
+    assert (ini >= 0),"El inicio debe ser como minimo 0"
+    assert (fin < len(t)), "No se puede buscar por encima del final de la tabla"
+
     pivot = t[ini]
     m = ini
-    for i in range(ini, fin+1):
-        if t[i] < pivot:
+    for i in range(ini+1, fin+1):
+        if t[i] <= pivot:
             m+=1
             t[i], t[m] = t[m], t[i]
 
     t[ini], t[m] = t[m], t[ini]
     return m
 
-t = [3,2,1,4,5]
-print(split(t, 0, 4))
-print(t)
 
 def split_pivot(t, ini, fin, pivot=None):
     """Divide los elementos de la tabla t entre indices ini y fin usando como
@@ -44,20 +44,29 @@ def split_pivot(t, ini, fin, pivot=None):
     :return type: int
     """
     assert (fin >= ini),"El indice final debe ser mayor que el inicial"
-    if not pivot:
+    assert (ini >= 0),"El inicio debe ser como minimo 0"
+    assert (fin < len(t)), "No se puede buscar por encima del final de la tabla"
+
+    if pivot is None:
         return split(t, ini, fin)
+
     m = ini
+    i_pivot = -1
 
     for i in range(ini, fin+1):
-        
+        if t[i] < pivot:
+            t[i], t[m] = t[m], t[i]
+            m+=1
+        elif t[i]==pivot:
+            t[i], t[m] = t[m], t[i]
+            i_pivot = m
+            m+=1
 
-    assert (t[m] == pivot), "El pivote no esta en la tabla"
+    assert (i_pivot >= 0), "El pivote no esta en la tabla"
+    t[i_pivot], t[m-1] = t[m-1], t[i_pivot]
 
-    return m
+    return m-1
 
-t = [3,2,1,4,5]
-print(split_pivot(t, 0, 4, 4))
-print(t)
 
 def qselect(t, ini, fin, ind, pivot=None):
     """Funcion que aplica el algoritmo de qselect para encontrar el valor del
@@ -83,18 +92,14 @@ def qselect(t, ini, fin, ind, pivot=None):
     """
     assert (ind <= fin-ini+1 or ind >= 0), "Los indices no son correctos"
 
-    m = split_pivot(t, ini, fin)
-
-    if ind == fin-ini+1:
-        return (t[m], m)
-    elif ind < m-ini+1:
+    m = split(t, ini, fin)
+    if ind == m-ini:
+        return t[m]
+    elif ind < m-ini:
         return qselect(t, ini, m-1, ind, pivot)
     else:
-        return qselect(t, m+1, fin, ind-(m-ini), pivot)
+        return qselect(t, m+1, fin, ind-(m-ini+1), pivot)
 
-t = [3,4,5,1,8,10,15,24,12]
-print(sorted(t))
-print(qselect(t,0,6,4))
 
 def qselect_sr(t, ini, fin, ind, pivot=None):
     """Implementacion de qselect sin recursion de cola
@@ -116,7 +121,23 @@ def qselect_sr(t, ini, fin, ind, pivot=None):
     :return type: int
 
     """
-    pass
+    assert (ind <= fin-ini+1 or ind >= 0), "Los indices no son correctos"
+
+    m = split(t, ini, fin)
+    while not (ind == m-ini):
+        if ind < m-ini:
+            return qselect_sr(t, ini, m-1, ind, pivot)
+        elif ind > m-ini:
+            ind = ind-(m-ini+1)
+            ini = m+1
+            m = split(t, ini, fin)
+    return t[m]
+
+
+def _mediana(t):
+    sortT=sorted(t)
+    l=len(sortT)
+    return sortT[(l-1)//2]
 
 def pivot_5(t, ini, fin):
     """Funcion que devuelve el 'pivote 5' de una tabla mediante el procedimiento
@@ -133,8 +154,17 @@ def pivot_5(t, ini, fin):
     :return type: int
 
     """
-    pass
+    medianas=[]
+    for i in range(ini,fin+1,5):
 
+        if fin-i < 5:
+            m = _mediana(t[i:fin+1])
+        else:
+            m = _mediana(t[i:i+5])
+
+        medianas.append(m)
+
+    return _mediana(medianas)
 
 
 def qselect_5(t, ini, fin, pos):
@@ -154,10 +184,22 @@ def qselect_5(t, ini, fin, pos):
     :return type: int
 
     """
-    pass
+    pivot = pivot_5(t, ini, fin)
+    m = split_pivot(t, ini, fin, pivot=pivot)
+    while not (pos == m-ini):
+        if pos < m-ini:
+            return qselect_5(t, ini, m-1, pos)
+        elif pos > m-ini:
+            pos = pos-(m-ini+1)
+            ini = m+1
+            pivot = pivot_5(t, ini, fin)
+            m = split_pivot(t, ini, fin, pivot=pivot)
+    return t[m]
 
-def qsort_5(t, ini, fin):
+
+def qsort_5(t, ini, fin, verbose=False):
     """Ordena la tabla t entre las posiciones ini y fin ( inclusive)
+    Es una version de Quicksort con caso peor O(N lg(N))
 
     :t : tabla
     :type t: list
@@ -170,4 +212,14 @@ def qsort_5(t, ini, fin):
     :return type: list
 
     """
-    pass
+    if ini == fin:
+        return t[ini:fin+1]
+
+    pivot = pivot_5(t, ini, fin)
+    m = split_pivot(t, ini, fin, pivot=pivot)
+    if ini < m-1:
+        qsort_5(t, ini, m-1)
+    if m+1 < fin:
+        qsort_5(t, m+1, fin)
+
+    return t[ini:fin+1]

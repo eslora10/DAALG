@@ -11,7 +11,7 @@ def _len2k(t,n):
 
     K = int(np.ceil(np.log2(n)))
     N = 2**K
-    return t + [0 for _ in range(N-len(t))]
+    return np.concatenate((t, [0 for _ in range(N-len(t))]))
 
 def fft(t):
     ''' Calcula la transformada de Fourier discreta de la tabla T
@@ -76,10 +76,6 @@ def invert_fft(t, fft_func=fft):
 
     return tinv
 
-#print(np.rint((invert_fft(fft([1,2,1,0,4])))))
-
-print(type(invert_fft(fft([1,2,1,0,4]))[0]))
-
 ################### I-B ###################
 
 def rand_polinomio(long=2**10, base=10):
@@ -94,10 +90,8 @@ def rand_polinomio(long=2**10, base=10):
     :return type: lista de ints de python
     '''
 
-    return [int(np.random.randint(0, base)) for i in range(long)]
+    return np.random.randint(0, base, long)
 
-
-#print( type(rand_polinomio()[0]))
 
 def poli_2_num(l_pol, base=10):
     ''' Transforma un polinomio en un numero (en base base) evaluandolo los coeficientes del
@@ -113,7 +107,7 @@ def poli_2_num(l_pol, base=10):
     '''
     act=0
     for coef in reversed(l_pol):
-        res=coef+act
+        res=int(coef)+act
         act=res*base
     return res
 
@@ -129,12 +123,11 @@ def rand_numero(num_digits, base=10):
     :return type: int
     '''
     # Generamos un polinomio con num_digits coeficientes
+
     pol=rand_polinomio(long=num_digits, base=base)
 
     # Evaluamos en la base
     return poli_2_num(pol, base=base)
-
-#print(rand_numero(10, base=10))
 
 def num_2_poli(num, base=10):
     ''' Devuelve un polinomio (en formato lista) con los coeficientes de
@@ -153,8 +146,6 @@ def num_2_poli(num, base=10):
         num, res = divmod(num, base)
         pol.append(res)
     return pol
-
-#print(poli_2_num(num_2_poli(2137512,base=3), base=3))
 
 def mult_polinomios(l_pol_1, l_pol_2):
     ''' Algoritmo de miltiplicacion habitual. Como los polinomios entan
@@ -176,9 +167,7 @@ def mult_polinomios(l_pol_1, l_pol_2):
         for j in range(m):
             res[i+j] += l_pol_1[i]*l_pol_2[j]
 
-    return list(res)
-
-#print( mult_polinomios([1,0,2],[0,2,2]))
+    return np.array(res)
 
 def mult_polinomios_fft(l_pol_1, l_pol_2, fft_func=fft):
     ''' Multiplicacion de polinomios con fft
@@ -206,9 +195,9 @@ def mult_polinomios_fft(l_pol_1, l_pol_2, fft_func=fft):
         coef1[i] *= coef2[i]
 
     # Inversa de la DFT
-    return invert_fft(coef1)
+    l = invert_fft(coef1)
+    return np.rint(l)
 
-print(np.rint(mult_polinomios_fft([1,0,2],[0,2,2])))
 def mult_numeros(num1, num2):
     ''' multiplica los numeros num1 y num2  llevamdolos a mult_polinomios
     y multplicandolos con la funcion mult_polinomios. Despues recupera el numero
@@ -223,8 +212,6 @@ def mult_numeros(num1, num2):
     :return type: int
     '''
     return poli_2_num(mult_polinomios(num_2_poli(num1), num_2_poli(num2)))
-
-print(mult_numeros(1013241293479123874981,412398471293749128))
 
 def mult_numeros_fft(num1, num2, fft_func=fft):
     ''' Multiplica dos numeros mediante fft
@@ -241,29 +228,7 @@ def mult_numeros_fft(num1, num2, fft_func=fft):
     '''
     return int(poli_2_num(mult_polinomios_fft(num_2_poli(num1), num_2_poli(num2), fft_func=fft_func)))
 
-print(mult_numeros_fft(400000000000,50000000000000000000000))
-print(type(mult_numeros_fft(400000000000,50000000000000000000000)))
-
 ################### I-C ###################
-
-def _time_mul_func(n_pairs, num_digits_ini, num_digits_fin, step, fft_fun):
-    #TODO comprobar q va bien y generalizar a las otras
-    l=[]
-    while num_digits_ini <= num_digits_fin:
-        t=0
-        for n in range(n_pairs):
-            num1 = rand_numero(num_digits_ini)
-            num2 = rand_numero(num_digits_ini)
-            t_ini= time.time()
-            if fft_fun is not None:
-                mult_numeros_fft(num1,num2, fft_fun)
-            else:
-                mult_numeros(num1, num2)
-            t_fin = time.time()
-            t+=t_fin-t_ini
-        l.append(t/n_pairs)
-        num_digits_ini+=step
-    return l
 
 def time_mult_numeros(n_pairs, num_digits_ini, num_digits_fin, step):
     ''' Mide el tiempo medio de multiplicar varias parejas de numeros con la el
@@ -294,8 +259,6 @@ def time_mult_numeros(n_pairs, num_digits_ini, num_digits_fin, step):
         l.append(t/n_pairs)
         num_digits_ini+=step
     return l
-
-print(time_mult_numeros(10, 100, 1000, 5))
 
 def time_mult_numeros_fft(n_pairs, num_digits_ini, num_digits_fin, step, fft_func=fft):
     ''' Mide el tiempo medio de multiplicar varias parejas de numeros con la el
@@ -329,7 +292,3 @@ def time_mult_numeros_fft(n_pairs, num_digits_ini, num_digits_fin, step, fft_fun
         num_digits_ini+=step
     return l
     #comprobar q va bien pork dio value error
-
-print(time_mult_numeros_fft(10, 100, 1000, 5))
-
-################### II ###################

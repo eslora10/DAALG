@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0037)http://localhost:1234/fft_poly02.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Pydoc: module fft_poly02</title>
+
+<link rel="stylesheet" type="text/css" href="./fft_poly02_files/_pydoc.css"></head><body bgcolor="#f0f0f8">
+            <div style="float:left">
+                Python 3.6.5 [default, GCC 7.2.0]<br>Linux-4.15.0-42-generic-x86_64-with-glibc2.9
+            </div>
+            <div style="float:right">
+                <div style="text-align:center">
+                  <a href="http://localhost:1234/index.html">Module Index</a>
+                  : <a href="http://localhost:1234/topics.html">Topics</a>
+                  : <a href="http://localhost:1234/keywords.html">Keywords</a>
+                </div>
+                <div>
+                    <form action="http://localhost:1234/get" style="display:inline;">
+                      <input type="text" name="key" size="15">
+                      <input type="submit" value="Get">
+                    </form>&nbsp;
+                    <form action="http://localhost:1234/search" style="display:inline;">
+                      <input type="text" name="key" size="15">
+                      <input type="submit" value="Search">
+                    </form>
+                </div>
+            </div>
+            <div style="clear:both;padding-top:.5em;">
+<table width="100%" cellspacing="0" cellpadding="2" border="0" summary="heading">
+<tbody><tr bgcolor="#7799ee">
+<td valign="bottom">&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>fft_poly02</strong></big></big></font></td><td align="right" valign="bottom"><font color="#ffffff" face="helvetica, arial"><a href="http://localhost:1234/">index</a><br><a href="http://localhost:1234/getfile?key=/home/esther/Escritorio/DAALG/p302/fft_poly02.py">/home/esther/Escritorio/DAALG/p302/fft_poly02.py</a></font></td></tr></tbody></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing="0" cellpadding="2" border="0" summary="section">
+<tbody><tr bgcolor="#aa55cc">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tbody><tr><td width="25%" valign="top"><a href="http://localhost:1234/numpy.html">numpy</a><br>
+</td><td width="25%" valign="top"><a href="http://localhost:1234/time.html">time</a><br>
+</td><td width="25%" valign="top"></td><td width="25%" valign="top"></td></tr></tbody></table></td></tr></tbody></table></p><p>
+<table width="100%" cellspacing="0" cellpadding="2" border="0" summary="section">
+<tbody><tr bgcolor="#eeaa77">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-fft"><strong>fft</strong></a>(t)</dt><dd><tt>Calcula&nbsp;la&nbsp;transformada&nbsp;de&nbsp;Fourier&nbsp;discreta&nbsp;de&nbsp;la&nbsp;tabla&nbsp;T<br>
+&nbsp;<br>
+:t:&nbsp;tabla&nbsp;sobre&nbsp;la&nbsp;que&nbsp;se&nbsp;aplica&nbsp;fft<br>
+:type&nbsp;t:&nbsp;array&nbsp;de&nbsp;enteros<br>
+&nbsp;<br>
+:return:&nbsp;la&nbsp;transformada&nbsp;de&nbsp;Fourier&nbsp;de&nbsp;t<br>
+:return&nbsp;type:&nbsp;array&nbsp;de&nbsp;numeros&nbsp;complejos</tt></dd></dl>
+ <dl><dt><a name="-invert_fft"><strong>invert_fft</strong></a>(t, fft_func=&lt;function fft at 0x7faefbdffb70&gt;)</dt><dd><tt>Calcula&nbsp;la&nbsp;inversa&nbsp;de&nbsp;una&nbsp;transformada&nbsp;de&nbsp;Fourier<br>
+&nbsp;<br>
+:t:&nbsp;tabla&nbsp;sobre&nbsp;la&nbsp;que&nbsp;se&nbsp;aplica&nbsp;la&nbsp;inversa<br>
+:type&nbsp;t:&nbsp;array&nbsp;de&nbsp;numeros&nbsp;complejos<br>
+:fft_func:&nbsp;funcion&nbsp;que&nbsp;aplica&nbsp;para&nbsp;calcular&nbsp;la&nbsp;DFT<br>
+:type&nbsp;fft_func:&nbsp;callable<br>
+&nbsp;<br>
+:return:&nbsp;inversa&nbsp;de&nbsp;t<br>
+:return&nbsp;type:&nbsp;array&nbsp;de&nbsp;numeros&nbsp;complejos</tt></dd></dl>
+ <dl><dt><a name="-mult_numeros"><strong>mult_numeros</strong></a>(num1, num2)</dt><dd><tt>multiplica&nbsp;los&nbsp;numeros&nbsp;num1&nbsp;y&nbsp;num2&nbsp;&nbsp;llevamdolos&nbsp;a&nbsp;mult_polinomios<br>
+y&nbsp;multplicandolos&nbsp;con&nbsp;la&nbsp;funcion&nbsp;mult_polinomios.&nbsp;Despues&nbsp;recupera&nbsp;el&nbsp;numero<br>
+resultante<br>
+&nbsp;<br>
+:num1:&nbsp;numero&nbsp;1<br>
+:type&nbsp;num1:&nbsp;int<br>
+:num2:&nbsp;numero&nbsp;2<br>
+:type&nbsp;num2:&nbsp;int<br>
+&nbsp;<br>
+:return:&nbsp;numero&nbsp;resultante&nbsp;de&nbsp;multiplicar&nbsp;polinomios<br>
+:return&nbsp;type:&nbsp;int</tt></dd></dl>
+ <dl><dt><a name="-mult_numeros_fft"><strong>mult_numeros_fft</strong></a>(num1, num2, fft_func=&lt;function fft at 0x7faefbdffb70&gt;)</dt><dd><tt>Multiplica&nbsp;dos&nbsp;numeros&nbsp;mediante&nbsp;fft<br>
+&nbsp;<br>
+:num1:&nbsp;numero&nbsp;1<br>
+:type&nbsp;num1:&nbsp;int<br>
+:num2:&nbsp;numero&nbsp;2<br>
+:type&nbsp;num2:&nbsp;int<br>
+:fft_func:&nbsp;funcion&nbsp;fft<br>
+:type&nbsp;fft_func:&nbsp;function<br>
+&nbsp;<br>
+:return:&nbsp;numero&nbsp;resultante<br>
+:return&nbsp;type:&nbsp;int</tt></dd></dl>
+ <dl><dt><a name="-mult_polinomios"><strong>mult_polinomios</strong></a>(l_pol_1, l_pol_2)</dt><dd><tt>Algoritmo&nbsp;de&nbsp;miltiplicacion&nbsp;habitual.&nbsp;Como&nbsp;los&nbsp;polinomios&nbsp;entan<br>
+ordenados&nbsp;por&nbsp;potencias&nbsp;crecientes,&nbsp;la&nbsp;multiplicacion&nbsp;es&nbsp;de&nbsp;izq&nbsp;a&nbsp;der<br>
+&nbsp;<br>
+:l_pol_1:&nbsp;polinomio&nbsp;1<br>
+:type&nbsp;l_pol_1:&nbsp;list<br>
+:l_pol_2:&nbsp;polinomio&nbsp;2<br>
+:type&nbsp;l_pol_2:&nbsp;list<br>
+&nbsp;<br>
+:return:&nbsp;lista&nbsp;de&nbsp;coeficientes&nbsp;resultantes&nbsp;de&nbsp;la&nbsp;multiplicacion<br>
+:return&nbsp;type:&nbsp;list</tt></dd></dl>
+ <dl><dt><a name="-mult_polinomios_fft"><strong>mult_polinomios_fft</strong></a>(l_pol_1, l_pol_2, fft_func=&lt;function fft at 0x7faefbdffb70&gt;)</dt><dd><tt>Multiplicacion&nbsp;de&nbsp;polinomios&nbsp;con&nbsp;fft<br>
+&nbsp;<br>
+:l_pol_1:&nbsp;polinomio&nbsp;1<br>
+:type&nbsp;l_pol_1:&nbsp;list<br>
+:l_pol_2:&nbsp;polinomio&nbsp;2<br>
+:type&nbsp;l_pol_2:&nbsp;list<br>
+:fft_func:&nbsp;funcion&nbsp;fft<br>
+:type&nbsp;fft_func:&nbsp;funcion<br>
+&nbsp;<br>
+:return:&nbsp;polinomio&nbsp;resultado&nbsp;de&nbsp;multiplicar<br>
+:return&nbsp;type:&nbsp;lista&nbsp;de&nbsp;ints</tt></dd></dl>
+ <dl><dt><a name="-num_2_poli"><strong>num_2_poli</strong></a>(num, base=10)</dt><dd><tt>Devuelve&nbsp;un&nbsp;polinomio&nbsp;(en&nbsp;formato&nbsp;lista)&nbsp;con&nbsp;los&nbsp;coeficientes&nbsp;de<br>
+correspondientes&nbsp;al&nbsp;numero&nbsp;expresado&nbsp;en&nbsp;base&nbsp;base<br>
+&nbsp;<br>
+:num:&nbsp;numero&nbsp;a&nbsp;transdormar&nbsp;en&nbsp;polinomio<br>
+:type&nbsp;num:&nbsp;int<br>
+:base:&nbsp;base&nbsp;en&nbsp;la&nbsp;que&nbsp;representamos&nbsp;el&nbsp;numero<br>
+:type&nbsp;base:&nbsp;int<br>
+&nbsp;<br>
+:return:&nbsp;polinomio&nbsp;(lista&nbsp;de&nbsp;coeficientes&nbsp;x^0.....&nbsp;x^n)<br>
+:return&nbsp;type:&nbsp;list</tt></dd></dl>
+ <dl><dt><a name="-poli_2_num"><strong>poli_2_num</strong></a>(l_pol, base=10)</dt><dd><tt>Transforma&nbsp;un&nbsp;polinomio&nbsp;en&nbsp;un&nbsp;numero&nbsp;(en&nbsp;base&nbsp;base)&nbsp;evaluandolo&nbsp;los&nbsp;coeficientes&nbsp;del<br>
+del&nbsp;polinomio&nbsp;expresado&nbsp;en&nbsp;la&nbsp;lista&nbsp;l_pol.&nbsp;Para&nbsp;ello&nbsp;se&nbsp;utiliza&nbsp;la&nbsp;la&nbsp;regla&nbsp;de&nbsp;Horner<br>
+&nbsp;<br>
+:l_pol:&nbsp;coeficientes&nbsp;del&nbsp;polinomio<br>
+:type&nbsp;l_pol:&nbsp;lista<br>
+:base:&nbsp;numero&nbsp;en&nbsp;el&nbsp;que&nbsp;se&nbsp;evalua&nbsp;el&nbsp;polinomio<br>
+:type&nbsp;base:&nbsp;int<br>
+&nbsp;<br>
+:return:&nbsp;numero&nbsp;resultante&nbsp;de&nbsp;evaluar<br>
+:return&nbsp;type:&nbsp;int</tt></dd></dl>
+ <dl><dt><a name="-rand_numero"><strong>rand_numero</strong></a>(num_digits, base=10)</dt><dd><tt>Genera&nbsp;un&nbsp;numero&nbsp;aleatorio&nbsp;de&nbsp;num_digits&nbsp;cifras<br>
+&nbsp;<br>
+:num_digits:&nbsp;numero&nbsp;de&nbsp;cifras<br>
+:type&nbsp;num_digits:&nbsp;int<br>
+:base:&nbsp;base&nbsp;en&nbsp;la&nbsp;que&nbsp;se&nbsp;representa&nbsp;el&nbsp;numero,&nbsp;por&nbsp;defecto&nbsp;decimal<br>
+:type&nbsp;base:&nbsp;int<br>
+&nbsp;<br>
+:return:&nbsp;numero&nbsp;aleatorio&nbsp;de&nbsp;num_digits&nbsp;cifras<br>
+:return&nbsp;type:&nbsp;int</tt></dd></dl>
+ <dl><dt><a name="-rand_polinomio"><strong>rand_polinomio</strong></a>(long=1024, base=10)</dt><dd><tt>Genera&nbsp;una&nbsp;lista&nbsp;de&nbsp;enteros&nbsp;que&nbsp;representa&nbsp;los&nbsp;coeficientes&nbsp;de&nbsp;un&nbsp;polinomio<br>
+&nbsp;<br>
+:long:&nbsp;longitud&nbsp;de&nbsp;la&nbsp;lista&nbsp;a&nbsp;devolver<br>
+:type&nbsp;long:&nbsp;int<br>
+:base:&nbsp;los&nbsp;coeficientes&nbsp;van&nbsp;de&nbsp;0&nbsp;a&nbsp;base-1;&nbsp;base&nbsp;in&nbsp;[2,10]&nbsp;inclusive<br>
+:type&nbsp;base:&nbsp;int<br>
+&nbsp;<br>
+:return:&nbsp;coeficientes&nbsp;del&nbsp;polinomio<br>
+:return&nbsp;type:&nbsp;lista&nbsp;de&nbsp;ints&nbsp;de&nbsp;python</tt></dd></dl>
+ <dl><dt><a name="-time_mult_numeros"><strong>time_mult_numeros</strong></a>(n_pairs, num_digits_ini, num_digits_fin, step)</dt><dd><tt>Mide&nbsp;el&nbsp;tiempo&nbsp;medio&nbsp;de&nbsp;multiplicar&nbsp;varias&nbsp;parejas&nbsp;de&nbsp;numeros&nbsp;con&nbsp;la&nbsp;el<br>
+algoritmo&nbsp;de&nbsp;multiplicacion&nbsp;estandar<br>
+&nbsp;<br>
+::n_pairs:&nbsp;numero&nbsp;de&nbsp;parejas&nbsp;a&nbsp;generar<br>
+:type&nbsp;n_pairs:&nbsp;int<br>
+:num_digits_ini:&nbsp;digitos&nbsp;iniciales&nbsp;de&nbsp;la&nbsp;pareja<br>
+:type&nbsp;num_digits_ini:&nbsp;int<br>
+:num_digits_fin:digitos&nbsp;finale&nbsp;de&nbsp;la&nbsp;pareja<br>
+:type&nbsp;num_digits_fin:&nbsp;int<br>
+:step:&nbsp;incremento&nbsp;en&nbsp;el&nbsp;numero&nbsp;de&nbsp;digitos<br>
+:type&nbsp;step:&nbsp;int<br>
+&nbsp;<br>
+:return:&nbsp;lista&nbsp;con&nbsp;los&nbsp;tiempos<br>
+:return&nbsp;type:&nbsp;list</tt></dd></dl>
+ <dl><dt><a name="-time_mult_numeros_fft"><strong>time_mult_numeros_fft</strong></a>(n_pairs, num_digits_ini, num_digits_fin, step, fft_func=&lt;function fft at 0x7faefbdffb70&gt;)</dt><dd><tt>Mide&nbsp;el&nbsp;tiempo&nbsp;medio&nbsp;de&nbsp;multiplicar&nbsp;varias&nbsp;parejas&nbsp;de&nbsp;numeros&nbsp;con&nbsp;la&nbsp;el<br>
+algoritmo&nbsp;de&nbsp;la&nbsp;fft<br>
+&nbsp;<br>
+:n_pairs:&nbsp;numero&nbsp;de&nbsp;parejas&nbsp;a&nbsp;generar<br>
+:type&nbsp;n_pairs:&nbsp;int<br>
+:num_digits_ini:&nbsp;digitos&nbsp;iniciales&nbsp;de&nbsp;la&nbsp;pareja<br>
+:type&nbsp;num_digits_ini:&nbsp;int<br>
+:num_digits_fin:digitos&nbsp;finale&nbsp;de&nbsp;la&nbsp;pareja<br>
+:type&nbsp;num_digits_fin:&nbsp;int<br>
+:step:&nbsp;incremento&nbsp;en&nbsp;el&nbsp;numero&nbsp;de&nbsp;digitos<br>
+:type&nbsp;step:&nbsp;int<br>
+:fft_func:&nbsp;funcion&nbsp;para&nbsp;la&nbsp;fft<br>
+:type&nbsp;fft_func:&nbsp;function<br>
+&nbsp;<br>
+:return:&nbsp;lista&nbsp;con&nbsp;los&nbsp;tiempos<br>
+:return&nbsp;type:&nbsp;list</tt></dd></dl>
+</td></tr></tbody></table></p></div>
+</body></html>

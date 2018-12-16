@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0036)http://localhost:1234/qselect02.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Pydoc: module qselect02</title>
+
+<link rel="stylesheet" type="text/css" href="./qselect02_files/_pydoc.css"></head><body bgcolor="#f0f0f8">
+            <div style="float:left">
+                Python 3.6.5 [default, GCC 7.2.0]<br>Linux-4.15.0-42-generic-x86_64-with-glibc2.9
+            </div>
+            <div style="float:right">
+                <div style="text-align:center">
+                  <a href="http://localhost:1234/index.html">Module Index</a>
+                  : <a href="http://localhost:1234/topics.html">Topics</a>
+                  : <a href="http://localhost:1234/keywords.html">Keywords</a>
+                </div>
+                <div>
+                    <form action="http://localhost:1234/get" style="display:inline;">
+                      <input type="text" name="key" size="15">
+                      <input type="submit" value="Get">
+                    </form>&nbsp;
+                    <form action="http://localhost:1234/search" style="display:inline;">
+                      <input type="text" name="key" size="15">
+                      <input type="submit" value="Search">
+                    </form>
+                </div>
+            </div>
+            <div style="clear:both;padding-top:.5em;">
+<table width="100%" cellspacing="0" cellpadding="2" border="0" summary="heading">
+<tbody><tr bgcolor="#7799ee">
+<td valign="bottom">&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>qselect02</strong></big></big></font></td><td align="right" valign="bottom"><font color="#ffffff" face="helvetica, arial"><a href="http://localhost:1234/">index</a><br><a href="http://localhost:1234/getfile?key=/home/esther/Escritorio/DAALG/p302/qselect02.py">/home/esther/Escritorio/DAALG/p302/qselect02.py</a></font></td></tr></tbody></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing="0" cellpadding="2" border="0" summary="section">
+<tbody><tr bgcolor="#eeaa77">
+<td colspan="3" valign="bottom">&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-pivot_5"><strong>pivot_5</strong></a>(t, ini, fin)</dt><dd><tt>Funcion&nbsp;que&nbsp;devuelve&nbsp;el&nbsp;'pivote&nbsp;5'&nbsp;de&nbsp;una&nbsp;tabla&nbsp;mediante&nbsp;el&nbsp;procedimiento<br>
+de&nbsp;mediana&nbsp;de&nbsp;medias.<br>
+&nbsp;<br>
+:t&nbsp;:&nbsp;tabla<br>
+:type&nbsp;t:&nbsp;list<br>
+:ini&nbsp;:&nbsp;indice&nbsp;inicial&nbsp;de&nbsp;la&nbsp;tabla<br>
+:type&nbsp;ini:&nbsp;int<br>
+:fin&nbsp;:&nbsp;indice&nbsp;final&nbsp;de&nbsp;la&nbsp;tabla<br>
+:type&nbsp;fin:&nbsp;int<br>
+&nbsp;<br>
+:return:&nbsp;devuelve&nbsp;el&nbsp;indice&nbsp;del&nbsp;'pivote&nbsp;5'<br>
+:return&nbsp;type:&nbsp;int</tt></dd></dl>
+ <dl><dt><a name="-qselect"><strong>qselect</strong></a>(t, ini, fin, ind, pivot=None)</dt><dd><tt>Funcion&nbsp;que&nbsp;aplica&nbsp;el&nbsp;algoritmo&nbsp;de&nbsp;qselect&nbsp;para&nbsp;encontrar&nbsp;el&nbsp;valor&nbsp;del<br>
+elemento&nbsp;en&nbsp;la&nbsp;posicion&nbsp;ind&nbsp;si&nbsp;la&nbsp;tabla&nbsp;estuviese&nbsp;ordenada&nbsp;y&nbsp;devuelve&nbsp;dicho<br>
+valor&nbsp;y&nbsp;la&nbsp;posicion&nbsp;donde&nbsp;se&nbsp;encuentra&nbsp;tras&nbsp;aplicar&nbsp;el&nbsp;algoritmo.<br>
+&nbsp;<br>
+:t&nbsp;:&nbsp;tabla<br>
+:type&nbsp;t:&nbsp;list<br>
+:ini&nbsp;:&nbsp;indice&nbsp;inicial&nbsp;de&nbsp;la&nbsp;tabla<br>
+:type&nbsp;ini:&nbsp;int<br>
+:fin&nbsp;:&nbsp;indice&nbsp;final&nbsp;de&nbsp;la&nbsp;tabla<br>
+:type&nbsp;fin:&nbsp;int<br>
+:ind&nbsp;:&nbsp;indice&nbsp;del&nbsp;elemento&nbsp;buscado<br>
+:type&nbsp;ind:&nbsp;int<br>
+:pivot&nbsp;:&nbsp;funcion&nbsp;que&nbsp;calcula&nbsp;el&nbsp;pivote<br>
+:type&nbsp;pivot:&nbsp;function<br>
+&nbsp;<br>
+:return:&nbsp;elemento&nbsp;de&nbsp;la&nbsp;posicion&nbsp;ind&nbsp;si&nbsp;la&nbsp;tabla&nbsp;estuviese&nbsp;ordenada<br>
+:return&nbsp;type:&nbsp;int<br>
+:return:&nbsp;posicion&nbsp;donde&nbsp;se&nbsp;enuentra&nbsp;dicho&nbsp;valor&nbsp;tras&nbsp;aplicar&nbsp;qselect<br>
+:return&nbsp;type:&nbsp;int</tt></dd></dl>
+ <dl><dt><a name="-qselect_5"><strong>qselect_5</strong></a>(t, ini, fin, pos)</dt><dd><tt>Devuelve&nbsp;el&nbsp;elemento&nbsp;de&nbsp;la&nbsp;tabla&nbsp;t&nbsp;que&nbsp;se&nbsp;encuentre&nbsp;en&nbsp;la&nbsp;poscion&nbsp;pos<br>
+mendiante&nbsp;la&nbsp;'variante&nbsp;5'&nbsp;del&nbsp;algoritmo&nbsp;qselect<br>
+&nbsp;<br>
+:t&nbsp;:&nbsp;tabla<br>
+:type&nbsp;t:&nbsp;list<br>
+:ini&nbsp;:&nbsp;indice&nbsp;inicial&nbsp;de&nbsp;la&nbsp;tabla<br>
+:type&nbsp;ini:&nbsp;int<br>
+:fin&nbsp;:&nbsp;indice&nbsp;final&nbsp;de&nbsp;la&nbsp;tabla<br>
+:type&nbsp;fin:&nbsp;int<br>
+:pos&nbsp;:&nbsp;posicion&nbsp;del&nbsp;elemento&nbsp;a&nbsp;devolver<br>
+:type&nbsp;pos:&nbsp;ind<br>
+&nbsp;<br>
+:return:&nbsp;Devuelve&nbsp;el&nbsp;elemento&nbsp;de&nbsp;la&nbsp;posicion&nbsp;pos<br>
+:return&nbsp;type:&nbsp;int</tt></dd></dl>
+ <dl><dt><a name="-qselect_sr"><strong>qselect_sr</strong></a>(t, ini, fin, ind, pivot=None)</dt><dd><tt>Implementacion&nbsp;de&nbsp;qselect&nbsp;sin&nbsp;recursion&nbsp;de&nbsp;cola<br>
+&nbsp;<br>
+:t&nbsp;:&nbsp;tabla<br>
+:type&nbsp;t:&nbsp;list<br>
+:ini&nbsp;:&nbsp;indice&nbsp;inicial&nbsp;de&nbsp;la&nbsp;tabla<br>
+:type&nbsp;ini:&nbsp;int<br>
+:fin&nbsp;:&nbsp;indice&nbsp;final&nbsp;de&nbsp;la&nbsp;tabla<br>
+:type&nbsp;fin:&nbsp;int<br>
+:ind&nbsp;:&nbsp;indice&nbsp;del&nbsp;elemento&nbsp;buscado<br>
+:type&nbsp;ind:&nbsp;int<br>
+:pivot&nbsp;:&nbsp;indice&nbsp;del&nbsp;pivote<br>
+:type&nbsp;pivot:&nbsp;int<br>
+&nbsp;<br>
+:return:&nbsp;elemento&nbsp;de&nbsp;la&nbsp;posicion&nbsp;ind&nbsp;si&nbsp;la&nbsp;tabla&nbsp;estuviese&nbsp;ordenada<br>
+:return&nbsp;type:&nbsp;int<br>
+:return:&nbsp;posicion&nbsp;donde&nbsp;se&nbsp;enuentra&nbsp;dicho&nbsp;valor&nbsp;tras&nbsp;aplicar&nbsp;qselect<br>
+:return&nbsp;type:&nbsp;int</tt></dd></dl>
+ <dl><dt><a name="-qsort_5"><strong>qsort_5</strong></a>(t, ini, fin, verbose=False)</dt><dd><tt>Ordena&nbsp;la&nbsp;tabla&nbsp;t&nbsp;entre&nbsp;las&nbsp;posiciones&nbsp;ini&nbsp;y&nbsp;fin&nbsp;(&nbsp;inclusive)<br>
+Es&nbsp;una&nbsp;version&nbsp;de&nbsp;Quicksort&nbsp;con&nbsp;caso&nbsp;peor&nbsp;O(N&nbsp;lg(N))<br>
+&nbsp;<br>
+:t&nbsp;:&nbsp;tabla<br>
+:type&nbsp;t:&nbsp;list<br>
+:ini&nbsp;:&nbsp;indice&nbsp;inicial&nbsp;a&nbsp;ordenar<br>
+:type&nbsp;ini:&nbsp;int<br>
+:fin&nbsp;:&nbsp;indice&nbsp;final&nbsp;a&nbsp;ordenar<br>
+:type&nbsp;fin:&nbsp;int<br>
+&nbsp;<br>
+:return:&nbsp;tabla&nbsp;ordenada&nbsp;entre&nbsp;ini&nbsp;y&nbsp;fin<br>
+:return&nbsp;type:&nbsp;list</tt></dd></dl>
+ <dl><dt><a name="-split"><strong>split</strong></a>(t, ini, fin)</dt><dd><tt>Divide&nbsp;los&nbsp;elementos&nbsp;de&nbsp;la&nbsp;tabla&nbsp;t&nbsp;entre&nbsp;indices&nbsp;ini&nbsp;y&nbsp;fin&nbsp;usando&nbsp;como<br>
+pivote&nbsp;el&nbsp;primer&nbsp;elemento<br>
+&nbsp;<br>
+:t&nbsp;:&nbsp;tabla<br>
+:type&nbsp;t:&nbsp;list<br>
+:ini&nbsp;:&nbsp;indice&nbsp;inicial&nbsp;de&nbsp;la&nbsp;tabla<br>
+:type&nbsp;ini:&nbsp;int<br>
+:fin&nbsp;:&nbsp;indice&nbsp;final&nbsp;de&nbsp;la&nbsp;tabla<br>
+:type&nbsp;fin:&nbsp;int<br>
+&nbsp;<br>
+:return:&nbsp;indice&nbsp;por&nbsp;el&nbsp;que&nbsp;dividimos<br>
+:return&nbsp;type:&nbsp;int</tt></dd></dl>
+ <dl><dt><a name="-split_pivot"><strong>split_pivot</strong></a>(t, ini, fin, pivot=None)</dt><dd><tt>Divide&nbsp;los&nbsp;elementos&nbsp;de&nbsp;la&nbsp;tabla&nbsp;t&nbsp;entre&nbsp;indices&nbsp;ini&nbsp;y&nbsp;fin&nbsp;usando&nbsp;como<br>
+pivote&nbsp;el&nbsp;primer&nbsp;elemento<br>
+&nbsp;<br>
+:t&nbsp;:&nbsp;tabla<br>
+:type&nbsp;t:&nbsp;list<br>
+:ini&nbsp;:&nbsp;indice&nbsp;inicial&nbsp;de&nbsp;la&nbsp;tabla<br>
+:type&nbsp;ini:&nbsp;int<br>
+:fin&nbsp;:&nbsp;indice&nbsp;final&nbsp;de&nbsp;la&nbsp;tabla<br>
+:type&nbsp;fin:&nbsp;int<br>
+:pivot&nbsp;:&nbsp;indice&nbsp;del&nbsp;pivote,&nbsp;si&nbsp;es&nbsp;none,&nbsp;se&nbsp;utiliza&nbsp;como&nbsp;pivote&nbsp;el&nbsp;primer&nbsp;elemento<br>
+:type&nbsp;pivot:&nbsp;int<br>
+&nbsp;<br>
+:return:&nbsp;el&nbsp;indice&nbsp;del&nbsp;pivote,&nbsp;la&nbsp;tabla&nbsp;t&nbsp;se&nbsp;modifica<br>
+:return&nbsp;type:&nbsp;int</tt></dd></dl>
+</td></tr></tbody></table></p></div>
+</body></html>
