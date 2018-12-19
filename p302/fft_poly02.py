@@ -195,7 +195,7 @@ def mult_polinomios_fft(l_pol_1, l_pol_2, fft_func=fft):
         coef1[i] *= coef2[i]
 
     # Inversa de la DFT
-    l = invert_fft(coef1)
+    l = invert_fft(coef1, fft_func=fft_func)
     return np.rint(l)
 
 def mult_numeros(num1, num2):
